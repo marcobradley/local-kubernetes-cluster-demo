@@ -1,6 +1,6 @@
 go_api:
   name: go-api
-  namespace:
+  namespace: dev
   replicaCount: 1
   image:
     repository: 'marcobradley/go-api'
