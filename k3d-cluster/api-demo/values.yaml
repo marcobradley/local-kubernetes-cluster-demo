@@ -1,4 +1,4 @@
-go-api:
+go_api:
   name: go-api
   namespace:
   replicaCount: 1
