@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go-api-deployment
-  namespace: dev
+  namespace: {{ .Values.go-api.namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.go-api.replicaCount }}
   selector:
     matchLabels:
       app: go-api
@@ -15,10 +15,10 @@ spec:
         app: go-api
     spec:
       containers:
-      - image: mbradleyhome/demo-api:latest
+      - image: {{ .Values.go-api.image.repository }}:{{ .Values.go-api.image.tag }}
         name: go-api
         ports:
-        - containerPort: 8080
+        - containerPort: {{ .Values.go-api.service.port }}
         resources:
           requests:
             memory: "64Mi"

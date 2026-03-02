@@ -1,1 +1,10 @@
 environment: 'dev'
+go-api:
+  replicaCount: 1
+  image:
+    repository: 'marcobradley/go-api'
+    tag: 'latest'
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
