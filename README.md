@@ -291,7 +291,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
   type: NodePort
   ```
 
-The GitHub Actions workflow that runs on pull requests validates Kubernetes YAML manifests under `kind-cluster/k8s-demo/*.yaml`, helping catch syntax issues in the demo resources.
+The GitHub Actions workflow that runs on pull requests validates YAML and Helm charts under both `kind-cluster/**` and `k3d-cluster/**`, helping catch manifest and chart issues early.
 
 ### Envoy Gateway Setup (Kind Cluster)
 
@@ -308,6 +308,40 @@ kubectl apply --server-side -f https://github.com/envoyproxy/gateway/releases/do
 * Helm communicates over the kubeconfig from `kubectl` and therefore automatically targets the active context.
 
 Feel free to adapt the configuration and manifests for your own experiments.
+
+## Run GitAction checks locally
+
+Prerequisites for local checks:
+
+- `yamllint` installed and available on `PATH`
+- `helm` installed and available on `PATH`
+- `nodejs` installed and available on `PATH`
+
+Install `yamllint` (Windows PowerShell):
+
+```powershell
+py -m pip install --user yamllint
+yamllint --version
+```
+
+If `yamllint` is not recognized, either open a new terminal or run it via Python:
+
+```powershell
+py -m yamllint --version
+```
+
+Run all local checks:
+
+```powershell
+npm run check:local
+```
+
+Run checks individually:
+
+```powershell
+npm run check:yaml
+npm run check:helm
+```
 
 ## CI / Release pipeline 🔁
 
