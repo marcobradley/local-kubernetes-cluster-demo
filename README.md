@@ -15,6 +15,7 @@ Before you begin, ensure your local machine meets the following requirements:
   - **k3d** installed globally. You can install via `choco install k3d` or follow the instructions at https://k3d.io/.
 4. **kubectl** CLI on your PATH. You can install/upgrade via `choco install kubernetes-cli`.
 5. **Helm** installed globally. Install via `choco install kubernetes-helm` or from https://helm.sh/docs/intro/install/.
+6. **Go** (the language) installed globally. Install via `choco install golang` (not the JetBrains IDE `Goland`).
 
 > 💡 All commands in this readme are meant to be run from a PowerShell terminal.
 
