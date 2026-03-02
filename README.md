@@ -352,5 +352,18 @@ A GitHub Actions workflow has been added to automate semantic versioning using [
 * **Behavior:** bumps the version based on conventional commits and creates a GitHub release.
 * **Requirements:** `GITHUB_TOKEN` is supplied automatically by GitHub Actions. Make sure the workflow permissions allow commenting on issues/PRs (see `issues: write` and `pull-requests: write` in the GitHub Actions config).
 
+### Commit message conventions
+
+- **Patch release:** `fix: correct ingress path`
+- **Minor release:** `feat: add k3d ingress manifest`
+- **Major release (breaking):** `feat!: change API route contract`
+- **Alternative major format:**
+
+```text
+feat: change API route contract
+
+BREAKING CHANGE: route /songs now requires auth
+```
+
 You can extend the workflow with tests/build steps as needed or adjust branch filters.
 
