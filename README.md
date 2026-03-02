@@ -37,7 +37,8 @@ Before you begin, ensure your local machine meets the following requirements:
 ### k3d-cluster resources
 
 - `k3d-cluster/cluster/config.yaml` – k3d cluster configuration
-- `k3d-cluster/argocd/` – Argo CD manifests for the k3d flow
+- `k3d-cluster/argocd/` – Argo CD Application manifests for the k3d flow (core + workloads)
+- `k3d-cluster/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
 - `k3d-cluster/api-demo/` – Helm chart/manifests for apis hosted in the cluster
 
 ## kind-specific setup & resources 🔧
@@ -246,6 +247,22 @@ These are the platform add-ons used in the k3 and kind clusters.
 ```
 kubectl create namespace argocd  # if you haven’t already
 kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+#### k3d split: core app + workloads app
+
+Apply Argo CD core first (manages `argocd-cmd-params-cm` + ingress), then workloads:
+
+```powershell
+kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\app-argocd-dev.yaml
+```
+
+After the first core sync, restart `argocd-server` once so `server.insecure=true` is picked up:
+
+```powershell
+kubectl rollout restart deployment argocd-server -n argocd
+kubectl rollout status deployment argocd-server -n argocd --timeout=180s
 ```
 
 #### Get default pw from powershell
