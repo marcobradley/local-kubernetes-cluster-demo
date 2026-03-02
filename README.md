@@ -353,7 +353,7 @@ A GitHub Actions workflow has been added to automate semantic versioning using [
 * **Requirements:** `GITHUB_TOKEN` is supplied automatically by GitHub Actions. Make sure the workflow permissions allow commenting on issues/PRs (see `issues: write` and `pull-requests: write` in the GitHub Actions config).
 
 ### Commit message conventions
-commit messages are used by [cycjimmy/semantic-release-action](https://github.com/cycjimmy/semantic-release-action) to determine the semantic version to tag the PR.
+commit messages are used by [cycjimmy/semantic-release-action](https://github.com/cycjimmy/semantic-release-action) to push the new version tag to the main branch.
 
 - **Patch release:** `fix: correct ingress path`
 - **Minor release:** `feat: add k3d ingress manifest`
