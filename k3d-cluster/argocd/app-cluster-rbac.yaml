@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'app-cluster-rbac'
+  namespace: argocd
+spec:
+  destination:
+    namespace: 'default'
+    server: 'https://kubernetes.default.svc'
+  source:
+    helm:
+      valueFiles:
+        - values.yaml
+    path: 'k3d-cluster/cluster-rbac'
+    repoURL: 'git@github.com:marcobradley/local-kubernetes-cluster-demo.git'
+    targetRevision: 'main'
+  project: 'default'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
