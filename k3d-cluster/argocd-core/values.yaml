@@ -1,5 +1,9 @@
 github:
   org: marcobradley
+  rbac:
+    orgGroup: marcobradley
+    adminTeamGroup: marcobradley:admin
+    maintainerTeamGroup: marcobradley:maintainer
   repo: local-kubernetes-cluster-demo
   externalSecrets:
     enabled: true
