@@ -15,3 +15,5 @@ github:
       item: GitHub OAuth
       sshPrivateKeyProperty: sshPrivateKey
       sshPrivateKeyDecodingStrategy: Base64
+      mirrorToArgoCdSecret:
+        keyName: sshPrivateKey
