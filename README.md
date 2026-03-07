@@ -192,42 +192,53 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 #### GitHub OAuth login for local Argo CD
 
-You can enable Argo CD SSO with GitHub OAuth for this local setup.
-1. Create an OAuth app in your GitHub org
-  - [Argocd Documentation](https://argo-cd.readthedocs.io/en/release-1.8/operator-manual/user-management/#:~:text=Once%20installed%20Argo%20CD%20has,users%20or%20configure%20SSO%20integration.)
-2. Create a GitHub OAuth App:
+This repo configures GitHub OAuth through the `argocd-core` Helm chart templates:
+
+- `k3d-cluster/argocd-core/templates/argocd-cm.yaml`
+- `k3d-cluster/argocd-core/templates/argocd-rbac-cm.yaml`
+- `k3d-cluster/argocd-core/templates/externalsecret-argocd-github-oauth.yaml`
+- `k3d-cluster/argocd-core/values.yaml`
+
+1. Create a GitHub OAuth App:
   - Homepage URL: `https://argocd.localhost:8443`
   - Authorization callback URL: `https://argocd.localhost:8443/api/dex/callback`
 
-3. Update Argo CD OAuth config files in this repo:
-  - `k3d-cluster/argocd-core/argocd-cm.yaml`
-  - `k3d-cluster/argocd-core/secret-argocd-github-oauth.yaml`
+2. Store OAuth client credentials in your secret backend (1Password item used by External Secrets in this repo):
+  - item title: `GitHub OAuth`
+  - required fields/properties:
+    - `clientID`
+    - `clientSecret`
 
-4. Set your GitHub values:
-  - In `argocd-cm.yaml`, set `org.name` to your GitHub org or username.
-  - In `secret-argocd-github-oauth.yaml`, set:
-    - `dex.github.clientID`
-    - `dex.github.clientSecret`
+3. Set values in `k3d-cluster/argocd-core/values.yaml`:
+  - `github.org`:
+    - leave empty (`""`) to allow OAuth login without org restriction
+    - set to a real GitHub organization slug to enforce org membership
+  - `github.rbac.*` group mappings as needed for Argo CD admin access
 
-5. Apply the manifests:
-
-```powershell
-kubectl apply -f .\k3d-cluster\argocd-core\argocd-cm.yaml
-kubectl apply -f .\k3d-cluster\argocd-core\secret-argocd-github-oauth.yaml
-```
-
-5. Restart Argo CD server to pick up changes:
+4. Apply/sync Argo CD core app:
 
 ```powershell
-kubectl rollout restart deployment argocd-server -n argocd
-kubectl rollout status deployment argocd-server -n argocd --timeout=180s
+kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
+kubectl get application argocd-core-k3d -n argocd
 ```
 
-6. Open Argo CD and sign in with GitHub:
-  - URL: `https://argocd.localhost:8443`
+5. Restart auth components after OAuth config changes:
 
-If the login button does not appear, check the `argocd-cm` and `argocd-secret`
-resources and then re-sync or re-apply Argo CD core manifests.
+```powershell
+kubectl rollout restart deployment/argocd-server -n argocd
+kubectl rollout restart deployment/argocd-dex-server -n argocd
+kubectl rollout status deployment/argocd-server -n argocd --timeout=180s
+kubectl rollout status deployment/argocd-dex-server -n argocd --timeout=180s
+```
+
+Troubleshooting:
+
+- `invalid_scope: Missing required scope(s) ["openid"]`:
+  - usually stale or invalid Dex config was active; restart `argocd-server` and `argocd-dex-server` and retry from a fresh browser session.
+- `user not in required orgs or teams`:
+  - `github.org` is enforcing org membership; set it to a real org slug you belong to, or clear it (`""`) to disable org restriction.
+- Argo CD app shows `Synced` but behavior does not change:
+  - `argocd-core-k3d` tracks remote git revision (`main`), so local-only changes are not applied until committed/pushed.
 
 #### Optional: 1Password as secrets manager (External Secrets Operator)
 
