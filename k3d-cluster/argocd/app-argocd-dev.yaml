@@ -13,7 +13,7 @@ spec:
       valueFiles:
         - values.yaml
         - values-dev.yaml
-    path: 'k3d-cluster/api-demo'
+    path: 'k3d-cluster/charts/api-demo'
     repoURL: 'git@github.com:marcobradley/local-kubernetes-cluster-demo.git'
     targetRevision: 'main'
   project: 'default'

@@ -8,6 +8,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Required for gitleaks commit-range scanning.
+          fetch-depth: 0
+
+      - name: Gitleaks scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -26,6 +34,4 @@ jobs:
 
       - name: Lint Helm charts
         run: |
-          helm lint k3d-cluster/api-demo
-          
-
+          helm lint k3d-cluster/charts/api-demo
