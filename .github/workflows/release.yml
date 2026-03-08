@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - main # Change this to your main release branch (e.g., master, release)
+      - main
 
 jobs:
   release:
@@ -16,9 +16,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           # This is important for fetching the full commit history and tags
-          # which is required by semantic-release to determine the correct version.
-          fetch-depth: 0 
-          persist-credentials: false # Recommended for protected branches
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4 # Use the specific action
@@ -27,3 +26,40 @@ jobs:
             conventional-changelog-conventionalcommits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  changelog-pr:
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update CHANGELOG.md
+        run: >-
+          npx conventional-changelog-cli@5.0.0 -p conventionalcommits
+          -i CHANGELOG.md -s -r 0
+
+      - name: Create pull request for changelog
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(changelog): update CHANGELOG.md'
+          title: 'chore(changelog): update CHANGELOG.md'
+          body: |
+            Automated changelog refresh after release.
+          branch: chore/update-changelog
+          base: main
+          add-paths: |
+            CHANGELOG.md
+          labels: |
+            documentation
