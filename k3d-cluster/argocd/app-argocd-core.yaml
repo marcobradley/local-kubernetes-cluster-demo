@@ -12,7 +12,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-    path: 'k3d-cluster/argocd-core'
+    path: 'k3d-cluster/charts/argocd-core'
     repoURL: 'git@github.com:marcobradley/local-kubernetes-cluster-demo.git'
     targetRevision: 'main'
   project: 'default'

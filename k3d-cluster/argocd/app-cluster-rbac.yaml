@@ -12,7 +12,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-    path: 'k3d-cluster/cluster-rbac'
+    path: 'k3d-cluster/charts/cluster-rbac'
     repoURL: 'git@github.com:marcobradley/local-kubernetes-cluster-demo.git'
     targetRevision: 'main'
   project: 'default'

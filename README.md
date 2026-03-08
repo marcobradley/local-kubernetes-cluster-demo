@@ -15,6 +15,7 @@ Before you begin, ensure your local machine meets the following requirements:
 4. **kubectl** CLI on your PATH. You can install/upgrade via `choco install kubernetes-cli`.
 5. **Helm** installed globally. Install via `choco install kubernetes-helm` or from https://helm.sh/docs/intro/install/.
 6. **Go** (the language) installed globally. Install via `choco install golang` (not the JetBrains IDE `Goland`).
+7. **1Password** Used as a secrets manager for the External Secrets Operator
 
 > 💡 All commands in this readme are meant to be run from a PowerShell terminal.
 
@@ -30,11 +31,19 @@ Before you begin, ensure your local machine meets the following requirements:
 
 - `k3d-cluster/cluster/config.yaml` – k3d cluster configuration
 - `k3d-cluster/argocd/` – Argo CD Application manifests for the k3d flow (core + workloads)
-- `k3d-cluster/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
-- `k3d-cluster/api-demo/` – Helm chart/manifests for apis hosted in the cluster
-- `k3d-cluster/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
-- `k3d-cluster/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
-- `k3d-cluster/external-secrets/` – SecretStore/ExternalSecret examples for 1Password + ESO
+- `k3d-cluster/charts/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
+- `k3d-cluster/charts/api-demo/` – Helm chart/manifests for apis hosted in the cluster
+- `k3d-cluster/charts/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
+- `k3d-cluster/charts/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
+
+#### Cluster Charts
+
+- `k3d-cluster/charts/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
+- `k3d-cluster/charts/api-demo/` – Helm chart/manifests for apis hosted in the cluster
+- `k3d-cluster/charts/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
+- `k3d-cluster/charts/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
+- `k3d-cluster/charts/monitoring/` – namespace/workload RBAC chart (Role/RoleBinding)
+- `k3d-cluster/charts/external-secrets/` – SecretStore/ExternalSecret for 1Password + ESO
 
 ## Using Helm with the cluster 🚀
 
@@ -170,7 +179,7 @@ Access endpoints (Traefik TLS / host port `8443`):
 - Grafana: `https://grafana.localhost:8443`
 - Prometheus: `https://prometheus.localhost:8443`
 
-Default Grafana login for this local setup:
+Default Grafana login for this local setup, it will ask to set a new PW after login:
 
 - username: `admin`
 - password: `admin`
@@ -184,7 +193,7 @@ kubectl rollout restart deployment argocd-server -n argocd
 kubectl rollout status deployment argocd-server -n argocd --timeout=180s
 ```
 
-#### Get default pw from powershell
+#### Get default Argocd pw from powershell
 
 ```
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | %{[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))}
@@ -199,17 +208,18 @@ This repo configures GitHub OAuth through the `argocd-core` Helm chart templates
 - `k3d-cluster/argocd-core/templates/externalsecret-argocd-github-oauth.yaml`
 - `k3d-cluster/argocd-core/values.yaml`
 
-1. Create a GitHub OAuth App:
+1. Create a GitHub OAuth App in [GitHub](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) :
   - Homepage URL: `https://argocd.localhost:8443`
   - Authorization callback URL: `https://argocd.localhost:8443/api/dex/callback`
 
-2. Store OAuth client credentials in your secret backend (1Password item used by External Secrets in this repo):
-  - item title: `GitHub OAuth`
-  - required fields/properties:
-    - `clientID`
-    - `clientSecret`
+2.Create a secret in the argocd namespace for the clientID and secretID from Github 
+  - Store OAuth client credentials in your secret backend (1Password item used by External Secrets in this repo):
+    - item title: `GitHub OAuth`
+    - required fields/properties:
+      - `clientID`
+      - `clientSecret`
 
-3. Set values in `k3d-cluster/argocd-core/values.yaml`:
+3. Set values in `k3d-cluster/charts/argocd-core/values.yaml`:
   - `github.org`:
     - leave empty (`""`) to allow OAuth login without org restriction
     - set to a real GitHub organization slug to enforce org membership
@@ -240,9 +250,9 @@ Troubleshooting:
 - Argo CD app shows `Synced` but behavior does not change:
   - `argocd-core-k3d` tracks remote git revision (`main`), so local-only changes are not applied until committed/pushed.
 
-#### Optional: 1Password as secrets manager (External Secrets Operator)
+#### 1Password as secrets manager (External Secrets Operator)
 
-This optional flow follows the same architecture shown in:
+This flow follows the same architecture shown in:
 https://dev.to/3deep5me/using-1password-with-external-secrets-operator-in-a-gitops-way-4lo4
 
 Apply Argo CD apps for 1Password Connect and External Secrets Operator:
@@ -256,8 +266,8 @@ kubectl get pods -n external-secrets
 Create a 1Password vault + connect server (requires `op` CLI):
 
 ```powershell
-op vault create "K8s"
-op connect server create "Kubernetes" --vaults "K8s"
+op vault create "K3s"
+op connect server create "Kubernetes" --vaults "K3s"
 ```
 
 Create the Connect credentials secret in Kubernetes (`op-credentials`):
@@ -269,7 +279,7 @@ kubectl create secret generic op-credentials -n external-secrets --from-file=1pa
 Create a token for External Secrets Operator and store it in Kubernetes:
 
 ```powershell
-$token = op connect token create "external-secret-operator" --server "Kubernetes" --vault "K8s"
+$token = op connect token create "external-secret-operator" --server "Kubernetes" --vault "K3s"
 kubectl create secret generic onepassword-connect-token -n external-secrets --from-literal=token="$token"
 ```
 
@@ -283,7 +293,7 @@ kubectl get clustersecretstore onepassword-k8s
 End-to-end test with an example item + ExternalSecret:
 
 ```powershell
-op item create --vault "K8s" --title "Scaleway Credentials" --category login accessKeyId="token-xyz" secretKey="xyz"
+op item create --vault "K3s" --title "Scaleway Credentials" --category login accessKeyId="token-xyz" secretKey="xyz"
 kubectl apply -f .\k3d-cluster\external-secrets\externalsecret-example.yaml
 kubectl get externalsecret -n default scaleway-credentials
 kubectl get secret -n default scaleway-credentials
@@ -291,7 +301,9 @@ kubectl get secret -n default scaleway-credentials
 
 Notes:
 - Keep `connect.serviceType=ClusterIP` (already set in `app-1password-connect.yaml`).
-- Do not commit real 1Password credentials/token files into git.
+
+> [!WARNING]
+> Do not commit real 1Password credentials or token files to git.
 
 ## Notes 📝
 
@@ -301,7 +313,7 @@ Notes:
 
 Feel free to adapt the configuration and manifests for your own experiments.
 
-## Run GitAction checks locally
+## Run GitHub Actions checks locally
 
 Prerequisites for local checks:
 
@@ -337,8 +349,10 @@ npm run check:helm
 
 ## Pre-commit hooks
 
-This repo uses [`pre-commit`](https://pre-commit.com/) with a `commit-msg` hook
-(`commitizen`) to enforce Conventional Commit messages.
+This repo uses [`pre-commit`](https://pre-commit.com/) with:
+
+- `gitleaks` for secret scanning before commit
+- a `commit-msg` hook (`commitizen`) to enforce Conventional Commit messages
 
 Install `pre-commit` (Windows PowerShell):
 
@@ -381,14 +395,27 @@ Use these repositories as the source of truth for endpoint details and contract 
 - `golang-api`: https://github.com/marcobradley/golang-api-demo
 - `ollama-api`: https://github.com/marcobradley/ollama-llm
 
-## CI / Release pipeline 🔁
+## GitHub Actions pipelines 🔁
 
-A GitHub Actions workflow has been added to automate semantic versioning using [release-me](https://github.com/semantic-release/release-me).
+This repository currently uses two GitHub Actions workflows:
+
+### Pull request validation
+
+* **Location:** `.github/workflows/pull-request.yaml`
+* **Trigger:** pull requests targeting `main`.
+* **Checks:**
+  * `gitleaks` secret scan
+  * `yamllint -c .yamllint k3d-cluster`
+  * `helm lint k3d-cluster/api-demo`
+
+### Release pipeline
+
+A GitHub Actions workflow automates semantic versioning using [release-me](https://github.com/semantic-release/release-me).
 
 * **Location:** `.github/workflows/release.yml`
 * **Trigger:** pushes to the `main` branch (typically merges).
 * **Behavior:** bumps the version based on conventional commits and creates a GitHub release.
-* **Requirements:** `GITHUB_TOKEN` is supplied automatically by GitHub Actions. Make sure the workflow permissions allow commenting on issues/PRs (see `issues: write` and `pull-requests: write` in the GitHub Actions config).
+* **Requirements:** `GITHUB_TOKEN` is supplied automatically by GitHub Actions. Ensure workflow permissions allow commenting on issues/PRs (see `issues: write` and `pull-requests: write` in workflow config).
 
 ### Commit message conventions
 commit messages are used by [cycjimmy/semantic-release-action](https://github.com/cycjimmy/semantic-release-action) to push the new version tag to the main branch.
