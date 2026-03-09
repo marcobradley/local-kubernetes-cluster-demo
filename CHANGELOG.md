@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.0.4...v0.0.0-development) (2026-03-08)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.0.5...v0.0.0-development) (2026-03-09)
 
 ### ⚠ BREAKING CHANGES
 
@@ -80,6 +80,7 @@
 * adding package.json ([0dbfd6e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0dbfd6e06ccfce343beb67a0309159da8471a09a))
 * adding permission ([f23b98f](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f23b98f13f92ae59a2c10a4cfb91041c405e82f0))
 * adding readme context ([0f00ed7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0f00ed7ac0ccfa712fbed414983254f486af5bb0))
+* Change token for changelog pull request action ([0751f0d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0751f0d2f67c2eabe9466efaf1996df7d2285ef6))
 * correct the helm values location ([168014e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/168014e55b938ea26203e25196548d9c7c6879fa))
 * corrected NS of the route and updated the gateway to accept traffic ([ce585a4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ce585a436e57ad92ab03dceab7b530a7183bee31))
 * corrected the image path ([6c52957](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6c5295742092da15ad6227400edfd20534c33492))
