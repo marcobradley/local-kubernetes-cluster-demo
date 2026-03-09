@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.0.5...v0.0.0-development) (2026-03-09)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.0.6...v0.0.0-development) (2026-03-09)
 
 ### ⚠ BREAKING CHANGES
 
@@ -75,6 +75,7 @@
 
 ### Bug Fixes
 
+* Add permissions for pull request workflow ([c084ea7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c084ea7d9eb3af47c9314a80f2956d957e732e6c))
 * adding back missing secret missing secret ([266d9a8](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/266d9a8ab384c90d81fac7aa7c24be47a9635a4d))
 * adding github actions workflow for release ([9d1ca79](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9d1ca799d51ed648cdcd96cbcfad25d5915ef2ac))
 * adding package.json ([0dbfd6e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0dbfd6e06ccfce343beb67a0309159da8471a09a))
