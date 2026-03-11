@@ -18,6 +18,7 @@ spec:
     helm:
       values: |
         profile: ambient
+        cniBinDir: /bin
         cniConfDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
   syncPolicy:
     automated:
