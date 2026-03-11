@@ -186,6 +186,27 @@ Default Grafana login for this local setup, it will ask to set a new PW after lo
 
 If browser cert warning appears, proceed (local/self-signed TLS).
 
+#### k3d service mesh: Istio ambient mode
+
+Deploy Istio components in ambient mode (no sidecars) via Argo CD:
+
+```powershell
+kubectl apply -f .\k3d-cluster\argocd\app-istio-base.yaml
+kubectl apply -f .\k3d-cluster\argocd\app-istio-cni.yaml
+kubectl apply -f .\k3d-cluster\argocd\app-istiod.yaml
+kubectl apply -f .\k3d-cluster\argocd\app-istio-ztunnel.yaml
+```
+
+Verify apps and workloads:
+
+```powershell
+kubectl get application -n argocd istio-base istio-cni istiod istio-ztunnel
+kubectl get pods -n istio-system
+kubectl get pods -n kube-system -l k8s-app=istio-cni-node
+```
+
+The `dev` namespace is labeled by `app-argocd-dev.yaml` with `istio.io/dataplane-mode=ambient`, so pods in that namespace join ambient mode without sidecar injection.
+
 After the first core sync, restart `argocd-server` once so `server.insecure=true` is picked up:
 
 ```powershell
