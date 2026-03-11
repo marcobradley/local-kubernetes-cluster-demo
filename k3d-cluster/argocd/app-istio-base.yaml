@@ -12,6 +12,7 @@ spec:
   project: default
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
+    targetRevision: "1.29"
     chart: base
   syncPolicy:
     automated:

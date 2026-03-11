@@ -13,10 +13,12 @@ spec:
   project: default
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
+    targetRevision: "1.29"
     chart: cni
     helm:
       values: |
         profile: ambient
+        cniConfDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
   syncPolicy:
     automated:
       prune: true
