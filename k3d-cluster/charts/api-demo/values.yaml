@@ -3,7 +3,7 @@ go_api:
   namespace: dev
   replicaCount: 1
   image:
-    repository: 'mbradleyhome/demo-api'
+    repository: 'mbradleyhome/golang-api-demo'
     tag: 'latest'
     pullPolicy: IfNotPresent
   service:
@@ -16,7 +16,7 @@ csharp_api:
   namespace: dev
   replicaCount: 1
   image:
-    repository: 'mbradleyhome/csharp-api'
+    repository: 'mbradleyhome/csharp-api-demo'
     tag: 'latest'
     pullPolicy: IfNotPresent
   service:
