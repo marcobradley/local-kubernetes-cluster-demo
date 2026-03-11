@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.1.2...v0.0.0-development) (2026-03-11)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.1.3...v0.0.0-development) (2026-03-11)
 
 ### ⚠ BREAKING CHANGES
 
@@ -119,6 +119,7 @@
 * update the helm structure ([2716694](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/27166945538f22f062687c85a8f8879e70ce1cf4))
 * updated api helm chart ([878b12c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/878b12cb27eec29c8e86bb1534de22d22e1aaa2c))
 * updated permissions ([fce814b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/fce814bcd8921ac44545272fbd6aad539cde1af6))
+* updated repos for go and csharp apis, updated the workload rbac values files ([ff495e4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ff495e459f452c864d02623b6ed6b2c35648336b))
 * updated target port for csharp adding a secret to the cluster for the ssh key ([f1e5eab](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f1e5eab6a72a2a24d48af3a58fb2809ecbb9ece2))
 * updated the name of the deployment ([f119359](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f119359ef641034ce2d008fb7d18c1b478de71b2))
 * updated the port ([8ab9673](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/8ab9673240719cdae5bd4bce5494b9662d01ac23))
