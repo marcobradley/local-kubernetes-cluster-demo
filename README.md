@@ -15,7 +15,8 @@ Before you begin, ensure your local machine meets the following requirements:
 4. **kubectl** CLI on your PATH. You can install/upgrade via `choco install kubernetes-cli`.
 5. **Helm** installed globally. Install via `choco install kubernetes-helm` or from https://helm.sh/docs/intro/install/.
 6. **Go** (the language) installed globally. Install via `choco install golang` (not the JetBrains IDE `Goland`).
-7. **1Password** Used as a secrets manager for the External Secrets Operator
+7. **istioctl** CLI for Istio debugging/testing. Install via `choco install istioctl`.
+8. **1Password** Used as a secrets manager for the External Secrets Operator
 
 > 💡 All commands in this readme are meant to be run from a PowerShell terminal.
 
@@ -187,6 +188,15 @@ Default Grafana login for this local setup, it will ask to set a new PW after lo
 If browser cert warning appears, proceed (local/self-signed TLS).
 
 #### k3d service mesh: Istio ambient mode
+
+Install `istioctl` for local service mesh debugging and verification:
+
+- [Istioctl Documentation](https://istio.io/latest/docs/reference/commands/istioctl/)
+
+```powershell
+choco install istioctl
+istioctl version
+```
 
 Deploy Istio components in ambient mode (no sidecars) via Argo CD:
 
