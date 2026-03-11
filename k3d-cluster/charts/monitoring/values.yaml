@@ -1,5 +1,7 @@
 grafana:
   adminPassword: admin
+  podLabels:
+    istio.io/dataplane-mode: ambient
   additionalDataSources:
     - name: Prometheus
       type: prometheus
