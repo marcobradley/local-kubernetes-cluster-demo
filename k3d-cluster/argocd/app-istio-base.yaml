@@ -9,6 +9,13 @@ spec:
   destination:
     namespace: istio-system
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    name: istiod-default-validator
+    jqPathExpressions:
+    - .webhooks[]?.clientConfig.caBundle
+    - .webhooks[]?.failurePolicy
   project: default
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
