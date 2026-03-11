@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.0.6...v0.0.0-development) (2026-03-09)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.1.0...v0.0.0-development) (2026-03-11)
 
 ### ⚠ BREAKING CHANGES
 
@@ -38,6 +38,7 @@
 * Adding envoy gateway ([5e24ebc](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5e24ebc9f8d472f64122d9acc75745f280e89ce0))
 * adding envoy proxy gateway settings ([c958c40](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c958c40e713343a7da0021ec2197cf728073b1ba))
 * adding go svc ([0d3fa7d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0d3fa7db6a4c1ccdebf39c1a9227b6f4b8dccd73))
+* adding istio ambient mode ([2d3694b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2d3694b61189c984228c9bba755ec8612a1d2074))
 * adding kind cluster ([2bd9600](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2bd960029d5332720c29443268140efeffd42396))
 * adding new apis for csharp and ollama ([a628656](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a628656579579ff354a4f271d2a05c074d066145))
 * adding OAuth support ([3f86511](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3f86511a7a0bf1514e6a1b18d822d1582d96fcc3))
@@ -66,6 +67,7 @@
 * reworking the cluster gateway ([23f29c3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/23f29c363254df517c24756b68f227d7a1c1d2f8))
 * separated out the values from the app config ([0608ee1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0608ee1da204f1cbc79153842d72919e2ab3b00a))
 * update release changelog section ([d629030](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/d629030a167c1b13b26273ed30b5071d62a7bd30))
+* update target versions ([18b855e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/18b855ecbcc53025db9ae7a029c2b19221db277a))
 * updated documentation ([422d3b5](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/422d3b5177c3138eeed8595bf9a1290679c004f5))
 * updated folder name and updated the pull-request.yaml ([937671e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/937671eb6ac81253ec7e5ffc8da940cf78201413))
 * updated PR check ([6838dc3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6838dc3e6fd69905eb61b235c1928fb60b88045a))
