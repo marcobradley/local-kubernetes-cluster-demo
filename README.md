@@ -115,7 +115,7 @@ These are the platform add-ons used in the cluster.
 #### Installing Argo CD into the cluster
 
 ```
-kubectl apply -f .\k3d-cluster\argocd\ns-argocd.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\ns-argocd.yaml
 kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
@@ -124,9 +124,9 @@ kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubuse
 Apply Argo CD core first (manages `argocd-cmd-params-cm` + ingress), then workloads:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-addons.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-dev.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-addons.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-dev.yaml
 ```
 
 #### k3d RBAC split: cluster-wide + workload-scoped
@@ -139,8 +139,8 @@ RBAC is managed as two separate Argo CD applications:
 Apply both RBAC apps:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-cluster-rbac.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-workload-rbac-dev.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-cluster-rbac.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-workload-rbac-dev.yaml
 ```
 
 Verify Argo CD application health:
@@ -163,7 +163,7 @@ kubectl get role,rolebinding -n dev
 Deploy monitoring stack via Argo CD:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-monitoring-k3d.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-monitoring-k3d.yaml
 kubectl get application -n argocd monitoring-k3d
 kubectl get pods -n monitoring
 ```
@@ -200,10 +200,10 @@ istioctl version
 Deploy Istio components in ambient mode (no sidecars) via Argo CD:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-istio-base.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-istio-cni.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-istiod.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-istio-ztunnel.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-base.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-cni.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istiod.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-ztunnel.yaml
 ```
 
 Verify apps and workloads:
@@ -258,7 +258,7 @@ This repo configures GitHub OAuth through the `argocd-core` Helm chart templates
 4. Apply/sync Argo CD core app:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-core.yaml
 kubectl get application argocd-core-k3d -n argocd
 ```
 
@@ -303,8 +303,8 @@ Create the Connect credentials secret in Kubernetes (`op-credentials`):
 Apply Argo CD apps for 1Password Connect and External Secrets Operator:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-1password-connect.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-external-secrets-operator.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-1password-connect.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-external-secrets-operator.yaml
 kubectl get pods -n external-secrets
 ```
 
