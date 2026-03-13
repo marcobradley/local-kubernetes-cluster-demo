@@ -48,7 +48,7 @@ kubectl wait --for=condition=Ready node --all --timeout=120s
 ```powershell
 kubectl get nodes
 kubectl get ns
-kubectl get applications -n argocd
+kubectl get argocd/apps -n argocd
 kubectl get pods -A
 ```
 
@@ -57,7 +57,7 @@ kubectl get pods -A
 If Argo CD apps are missing (for example, restoring to a fresh install path):
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-dev.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-monitoring-k3d.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-dev.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-monitoring-k3d.yaml
 ```

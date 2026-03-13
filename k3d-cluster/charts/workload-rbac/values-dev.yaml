@@ -1,6 +1,0 @@
-go_api:
-  namespace: dev
-csharp_api:
-  namespace: dev
-ollama_api:
-  namespace: dev

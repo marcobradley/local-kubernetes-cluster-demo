@@ -31,20 +31,18 @@ Before you begin, ensure your local machine meets the following requirements:
 ### Cluster resources
 
 - `k3d-cluster/cluster/config.yaml` – k3d cluster configuration
-- `k3d-cluster/argocd/` – Argo CD Application manifests for the k3d flow (core + workloads)
-- `k3d-cluster/charts/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
-- `k3d-cluster/charts/api-demo/` – Helm chart/manifests for apis hosted in the cluster
-- `k3d-cluster/charts/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
-- `k3d-cluster/charts/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
+- `k3d-cluster/argocd/apps/` – Argo CD Application manifests for the k3d flow (core + workloads)
+- `k3d-cluster/manifests/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
+- `k3d-cluster/manifests/api-demo/` – Helm chart/manifests for apis hosted in the cluster
+- `k3d-cluster/manifests/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
 
 #### Cluster Charts
 
-- `k3d-cluster/charts/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
-- `k3d-cluster/charts/api-demo/` – Helm chart/manifests for apis hosted in the cluster
-- `k3d-cluster/charts/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
-- `k3d-cluster/charts/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
-- `k3d-cluster/charts/monitoring/` – namespace/workload RBAC chart (Role/RoleBinding)
-- `k3d-cluster/charts/external-secrets/` – SecretStore/ExternalSecret for 1Password + ESO
+- `k3d-cluster/manifests/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
+- `k3d-cluster/manifests/api-demo/` – Helm chart/manifests for apis hosted in the cluster
+- `k3d-cluster/manifests/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
+- `k3d-cluster/manifests/monitoring/` – namespace/workload RBAC chart (Role/RoleBinding)
+- `k3d-cluster/manifests/external-secrets/` – SecretStore/ExternalSecret for 1Password + ESO
 
 ## Using Helm with the cluster 🚀
 
@@ -68,6 +66,20 @@ Replace the example chart above with any chart you need.
 This repository also includes a k3d cluster manifest:
 
 - `k3d-cluster/cluster/config.yaml`
+
+For a full cluster bootstrap, including Argo CD, 1Password Connect, External Secrets, and Istio, use the setup script:
+
+```powershell
+.\scripts\setup-cluster.ps1 -CreateTokenFromOp
+```
+
+Or provide an existing 1Password Connect token directly:
+
+```powershell
+.\scripts\setup-cluster.ps1 -Token <your-1password-connect-token>
+```
+
+The script performs the full startup flow in order and waits for each Argo CD Application to become Healthy before moving on.
 
 Create the cluster from this config:
 
@@ -114,10 +126,18 @@ These are the platform add-ons used in the cluster.
 
 ### Argocd Setup
 
+For normal local startup, prefer the single bootstrap script instead of running each Argo CD and platform step by hand:
+
+```powershell
+.\scripts\setup-cluster.ps1 -CreateTokenFromOp
+```
+
+Use the sections below when you need to run or troubleshoot individual steps.
+
 #### Installing Argo CD into the cluster
 
 ```
-kubectl create namespace argocd  # if you haven’t already
+kubectl apply -f .\k3d-cluster\argocd\apps\ns-argocd.yaml
 kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
@@ -126,22 +146,23 @@ kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubuse
 Apply Argo CD core first (manages `argocd-cmd-params-cm` + ingress), then workloads:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-dev.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-addons.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-dev.yaml
 ```
 
 #### k3d RBAC split: cluster-wide + workload-scoped
 
 RBAC is managed as two separate Argo CD applications:
 
-- `k3d-cluster/argocd/app-cluster-rbac.yaml` for cluster-scoped permissions.
-- `k3d-cluster/argocd/app-workload-rbac-dev.yaml` for workload/namespace-scoped permissions.
+- `k3d-cluster/argocd/apps/app-cluster-rbac.yaml` for cluster-scoped permissions.
+- `k3d-cluster/applcations/app-workload-rbac-dev.yaml` for workload/namespace-scoped permissions.
 
 Apply both RBAC apps:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-cluster-rbac.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-workload-rbac-dev.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-cluster-rbac.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-workload-rbac-dev.yaml
 ```
 
 Verify Argo CD application health:
@@ -164,14 +185,14 @@ kubectl get role,rolebinding -n dev
 Deploy monitoring stack via Argo CD:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-monitoring-k3d.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-monitoring-k3d.yaml
 kubectl get application -n argocd monitoring-k3d
 kubectl get pods -n monitoring
 ```
 
 Monitoring Helm values are stored in:
 
-- `k3d-cluster/monitoring/values.yaml`
+- `k3d-cluster/manifests/monitoring/values.yaml`
 
 Update that file to keep Grafana ingress, Prometheus ingress, datasource defaults, and admission webhook settings across fresh installs.
 
@@ -201,10 +222,10 @@ istioctl version
 Deploy Istio components in ambient mode (no sidecars) via Argo CD:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-istio-base.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-istio-cni.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-istiod.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-istio-ztunnel.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-base.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-cni.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istiod.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-ztunnel.yaml
 ```
 
 Verify apps and workloads:
@@ -234,10 +255,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 This repo configures GitHub OAuth through the `argocd-core` Helm chart templates:
 
-- `k3d-cluster/argocd-core/templates/argocd-cm.yaml`
-- `k3d-cluster/argocd-core/templates/argocd-rbac-cm.yaml`
-- `k3d-cluster/argocd-core/templates/externalsecret-argocd-github-oauth.yaml`
-- `k3d-cluster/argocd-core/values.yaml`
+- `k3d-cluster/manifests/argocd-core/templates/argocd-cm.yaml`
+- `k3d-cluster/manifests/argocd-core/templates/argocd-rbac-cm.yaml`
+- `k3d-cluster/manifests/argocd-core/templates/externalsecret-argocd-github-oauth.yaml`
+- `k3d-cluster/manifests/argocd-core/values.yaml`
 
 1. Create a GitHub OAuth App in [GitHub](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) :
   - Homepage URL: `https://argocd.localhost:8443`
@@ -250,7 +271,7 @@ This repo configures GitHub OAuth through the `argocd-core` Helm chart templates
       - `clientID`
       - `clientSecret`
 
-3. Set values in `k3d-cluster/charts/argocd-core/values.yaml`:
+3. Set values in `k3d-cluster/manifests/argocd-core/values.yaml`:
   - `github.org`:
     - leave empty (`""`) to allow OAuth login without org restriction
     - set to a real GitHub organization slug to enforce org membership
@@ -259,7 +280,7 @@ This repo configures GitHub OAuth through the `argocd-core` Helm chart templates
 4. Apply/sync Argo CD core app:
 
 ```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-argocd-core.yaml
 kubectl get application argocd-core-k3d -n argocd
 ```
 
@@ -286,14 +307,6 @@ Troubleshooting:
 This flow follows the same architecture shown in:
 https://dev.to/3deep5me/using-1password-with-external-secrets-operator-in-a-gitops-way-4lo4
 
-Apply Argo CD apps for 1Password Connect and External Secrets Operator:
-
-```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-1password-connect.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-external-secrets-operator.yaml
-kubectl get pods -n external-secrets
-```
-
 Create a 1Password vault + connect server (requires `op` CLI):
 
 ```powershell
@@ -304,7 +317,17 @@ op connect server create "Kubernetes" --vaults "K3s"
 Create the Connect credentials secret in Kubernetes (`op-credentials`):
 
 ```powershell
-kubectl create secret generic op-credentials -n external-secrets --from-file=1password-credentials.json="C:\path\to\1password-credentials.json"
+.\scripts\set-1password-connect-secrets.ps1 -CredentialsFile "C:\path\to\1password-credentials.json"
+```
+
+`1password-credentials.json` must be stored in the `op-credentials` secret as a base64-encoded string value for this Connect deployment. Using `--from-file` stores the raw JSON payload and causes Connect startup to fail with `illegal base64 data at input byte 0`.
+
+Apply Argo CD apps for 1Password Connect and External Secrets Operator:
+
+```powershell
+kubectl apply -f .\k3d-cluster\argocd\apps\app-1password-connect.yaml
+kubectl apply -f .\k3d-cluster\argocd\apps\app-external-secrets-operator.yaml
+kubectl get pods -n external-secrets
 ```
 
 Create a token for External Secrets Operator and store it in Kubernetes:
@@ -314,11 +337,21 @@ $token = op connect token create "external-secret-operator" --server "Kubernetes
 kubectl create secret generic onepassword-connect-token -n external-secrets --from-literal=token="$token"
 ```
 
+Or let the helper script create or refresh both secrets in one step:
+
+```powershell
+.\scripts\set-1password-connect-secrets.ps1 -CredentialsFile "C:\path\to\1password-credentials.json" -CreateTokenFromOp -ConnectServerName "Kubernetes" -Vault "K3s" -TokenName "external-secret-operator"
+```
+
+When token creation is enabled, the script writes both token secrets by default:
+- `onepassword-connect-token` (used by `ClusterSecretStore` in this repo)
+- `external-secret-operator` (compatibility alias for downstream references)
+
 Apply the SecretStore configuration:
 
 ```powershell
 kubectl apply -f .\k3d-cluster\external-secrets\clustersecretstore-1password.yaml
-kubectl get clustersecretstore onepassword-k8s
+kubectl get clustersecretstore onepassword-k3s
 ```
 
 End-to-end test with an example item + ExternalSecret:

@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 data:
   # External URL used for OAuth callback and Argo CD links.
   url: https://argocd.localhost:8443

@@ -2,24 +2,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-cni
+  name: istio-ztunnel
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/background
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   destination:
-    namespace: kube-system
+    namespace: istio-system
     server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
     targetRevision: "1.29"
-    chart: cni
-    helm:
-      values: |
-        profile: ambient
-        cniBinDir: /bin
-        cniConfDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
+    chart: ztunnel
   syncPolicy:
     automated:
       prune: true
