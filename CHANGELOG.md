@@ -1,7 +1,15 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v3.1.5...v0.0.0-development) (2026-03-11)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.0...v0.0.0-development) (2026-03-13)
 
 ### ⚠ BREAKING CHANGES
 
+* set the version to the major version v4
+* created a single setup script for argocd
+* corrected the paths
+* reworked app of apps setup
+* fixed meta-data for app
+* updated bootstrap to make the dependency secret
+* reworking the logic for argocd-core
+* correcting circle logic issue with argocd
 * integrating 1password
 * only run helm lint against the api-demo
 * removed the kind cluster lint path
@@ -90,10 +98,14 @@
 * correct the helm values location ([168014e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/168014e55b938ea26203e25196548d9c7c6879fa))
 * corrected NS of the route and updated the gateway to accept traffic ([ce585a4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ce585a436e57ad92ab03dceab7b530a7183bee31))
 * corrected the image path ([6c52957](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6c5295742092da15ad6227400edfd20534c33492))
+* corrected the paths ([0b0f1e1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0b0f1e1c70a72a07be44ff6754728cb0fbad01f5))
 * corrected the role bindings ([95d1696](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/95d169640cf21e6e58de7f967cdab58d129321f9))
+* correcting circle logic issue with argocd ([bb2c035](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb2c035e426c7a6b5876f71c15da70c63a206c37))
 * correcting secrets for argocd ([5259960](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/52599609d4165b343ca34af61045fd28271b8035))
 * correcting the helm structure ([a5e458b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a5e458b909fa15f23acdff3bce1376f3d7287e89))
+* created a single setup script for argocd ([4c45cde](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/4c45cdeb5a4d8365f8b0f9a1cd742432fd4057a9))
 * Fix UTF-8 encoding issue in deployment-go-api.yaml ([3b07814](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3b078143775800d2394d23eceb0530f42917676d))
+* fixed meta-data for app ([47137ac](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/47137ac30b61e32184330a9a7fcece0ae504bb27))
 * fixed path ([317bf34](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/317bf34c0a75a8aebe781d52592fbe7a53f96b26))
 * fixed path to charts ([3af26e1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3af26e138e83c7e08488386f9aeb5ad84177efa2))
 * fixed path to use linux path structure ([78a20fb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/78a20fb75f207f4aa6a68ae4f138a18d7c879dd5))
@@ -111,7 +123,10 @@
 * removed nodejs ([1a88ce3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1a88ce3303154bf8034166a32f4e74d1fb6ac846))
 * removed org for local ([f59c970](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f59c97079e9dcc4ab9a0d62b87735e9a3423f495))
 * removed unused template ([40ab598](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/40ab598e6c17f66838e7269e7fe999e22fb02492))
+* reworked app of apps setup ([cea89c1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cea89c107d191d09450cac4f1773e684c2b11597))
+* reworking the logic for argocd-core ([b4a29e2](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b4a29e233b0a82efcd6d1dd576fe0ac6136c85f6))
 * set gateway type to NodePort and point to the port 30000 ([2db61a0](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2db61a016f9c97bdc8ab1adee428e254711f1ee3))
+* set the version to the major version v4 ([bb75bb6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb75bb612dd5a421b6555b57a044577da9f6386f))
 * set up the templates correctly ([1c69883](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1c698836c89b01449cd6f9c4372df24435318bfb))
 * update action ([9a6b369](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9a6b369d1cb6cd6cc1a51c93513459df320ad4fe))
 * update app to autofind files under directory ([37d0968](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/37d0968d6b7ae33050cd89b3e687371bd6ba310e))
@@ -120,6 +135,7 @@
 * update service type to nodeport ([73e59a9](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/73e59a9a03602b5cb4772903e6f477c20d7b3876))
 * update the helm structure ([2716694](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/27166945538f22f062687c85a8f8879e70ce1cf4))
 * updated api helm chart ([878b12c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/878b12cb27eec29c8e86bb1534de22d22e1aaa2c))
+* updated bootstrap to make the dependency secret ([cdd89c6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cdd89c65e87033b19c55c169680cfd15218bc925))
 * updated permissions ([fce814b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/fce814bcd8921ac44545272fbd6aad539cde1af6))
 * updated repos for go and csharp apis, updated the workload rbac values files ([ff495e4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ff495e459f452c864d02623b6ed6b2c35648336b))
 * updated target port for csharp adding a secret to the cluster for the ssh key ([f1e5eab](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f1e5eab6a72a2a24d48af3a58fb2809ecbb9ece2))
