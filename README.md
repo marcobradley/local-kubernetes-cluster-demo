@@ -67,6 +67,20 @@ This repository also includes a k3d cluster manifest:
 
 - `k3d-cluster/cluster/config.yaml`
 
+For a full cluster bootstrap, including Argo CD, 1Password Connect, External Secrets, and Istio, use the setup script:
+
+```powershell
+.\scripts\setup-cluster.ps1 -CreateTokenFromOp
+```
+
+Or provide an existing 1Password Connect token directly:
+
+```powershell
+.\scripts\setup-cluster.ps1 -Token <your-1password-connect-token>
+```
+
+The script performs the full startup flow in order and waits for each Argo CD Application to become Healthy before moving on.
+
 Create the cluster from this config:
 
 ```powershell
@@ -111,6 +125,14 @@ Restore runbook:
 These are the platform add-ons used in the cluster.
 
 ### Argocd Setup
+
+For normal local startup, prefer the single bootstrap script instead of running each Argo CD and platform step by hand:
+
+```powershell
+.\scripts\setup-cluster.ps1 -CreateTokenFromOp
+```
+
+Use the sections below when you need to run or troubleshoot individual steps.
 
 #### Installing Argo CD into the cluster
 
