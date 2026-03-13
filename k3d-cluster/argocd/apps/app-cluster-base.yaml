@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-app-of-apps
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/background
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/marcobradley/local-kubernetes-cluster-demo.git
+    targetRevision: refactor
+    path: k3d-cluster/argocd/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true

@@ -37,4 +37,4 @@ jobs:
 
       - name: Lint Helm charts
         run: |
-          helm lint k3d-cluster/charts/api-demo
+          helm lint k3d-cluster/manifests/api-demo

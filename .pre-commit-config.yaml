@@ -24,8 +24,8 @@ repos:
         stages: [pre-commit]
 
       - id: lint-helm-chart-api-demo
-        name: Lint Helm chart (k3d-cluster/charts/api-demo)
-        entry: helm lint k3d-cluster/charts/api-demo
+        name: Lint Helm chart (k3d-cluster/manifests/api-demo)
+        entry: helm lint k3d-cluster/manifests/api-demo
         language: system
         pass_filenames: false
         stages: [pre-commit]

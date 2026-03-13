@@ -31,20 +31,18 @@ Before you begin, ensure your local machine meets the following requirements:
 ### Cluster resources
 
 - `k3d-cluster/cluster/config.yaml` – k3d cluster configuration
-- `k3d-cluster/argocd/` – Argo CD Application manifests for the k3d flow (core + workloads)
-- `k3d-cluster/charts/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
-- `k3d-cluster/charts/api-demo/` – Helm chart/manifests for apis hosted in the cluster
-- `k3d-cluster/charts/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
-- `k3d-cluster/charts/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
+- `k3d-cluster/argocd/apps/` – Argo CD Application manifests for the k3d flow (core + workloads)
+- `k3d-cluster/manifests/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
+- `k3d-cluster/manifests/api-demo/` – Helm chart/manifests for apis hosted in the cluster
+- `k3d-cluster/manifests/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
 
 #### Cluster Charts
 
-- `k3d-cluster/charts/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
-- `k3d-cluster/charts/api-demo/` – Helm chart/manifests for apis hosted in the cluster
-- `k3d-cluster/charts/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
-- `k3d-cluster/charts/workload-rbac/` – namespace/workload RBAC chart (Role/RoleBinding)
-- `k3d-cluster/charts/monitoring/` – namespace/workload RBAC chart (Role/RoleBinding)
-- `k3d-cluster/charts/external-secrets/` – SecretStore/ExternalSecret for 1Password + ESO
+- `k3d-cluster/manifests/argocd-core/` – Argo CD core runtime manifests (ingress + cmd params)
+- `k3d-cluster/manifests/api-demo/` – Helm chart/manifests for apis hosted in the cluster
+- `k3d-cluster/manifests/cluster-rbac/` – cluster-scoped RBAC chart (ClusterRole/ClusterRoleBinding)
+- `k3d-cluster/manifests/monitoring/` – namespace/workload RBAC chart (Role/RoleBinding)
+- `k3d-cluster/manifests/external-secrets/` – SecretStore/ExternalSecret for 1Password + ESO
 
 ## Using Helm with the cluster 🚀
 
@@ -135,8 +133,8 @@ kubectl apply -f .\k3d-cluster\argocd\app-argocd-dev.yaml
 
 RBAC is managed as two separate Argo CD applications:
 
-- `k3d-cluster/argocd/app-cluster-rbac.yaml` for cluster-scoped permissions.
-- `k3d-cluster/argocd/app-workload-rbac-dev.yaml` for workload/namespace-scoped permissions.
+- `k3d-cluster/argocd/apps/app-cluster-rbac.yaml` for cluster-scoped permissions.
+- `k3d-cluster/applcations/app-workload-rbac-dev.yaml` for workload/namespace-scoped permissions.
 
 Apply both RBAC apps:
 
@@ -172,7 +170,7 @@ kubectl get pods -n monitoring
 
 Monitoring Helm values are stored in:
 
-- `k3d-cluster/monitoring/values.yaml`
+- `k3d-cluster/manifests/monitoring/values.yaml`
 
 Update that file to keep Grafana ingress, Prometheus ingress, datasource defaults, and admission webhook settings across fresh installs.
 
@@ -235,10 +233,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 This repo configures GitHub OAuth through the `argocd-core` Helm chart templates:
 
-- `k3d-cluster/argocd-core/templates/argocd-cm.yaml`
-- `k3d-cluster/argocd-core/templates/argocd-rbac-cm.yaml`
-- `k3d-cluster/argocd-core/templates/externalsecret-argocd-github-oauth.yaml`
-- `k3d-cluster/argocd-core/values.yaml`
+- `k3d-cluster/manifests/argocd-core/templates/argocd-cm.yaml`
+- `k3d-cluster/manifests/argocd-core/templates/argocd-rbac-cm.yaml`
+- `k3d-cluster/manifests/argocd-core/templates/externalsecret-argocd-github-oauth.yaml`
+- `k3d-cluster/manifests/argocd-core/values.yaml`
 
 1. Create a GitHub OAuth App in [GitHub](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) :
   - Homepage URL: `https://argocd.localhost:8443`
@@ -251,7 +249,7 @@ This repo configures GitHub OAuth through the `argocd-core` Helm chart templates
       - `clientID`
       - `clientSecret`
 
-3. Set values in `k3d-cluster/charts/argocd-core/values.yaml`:
+3. Set values in `k3d-cluster/manifests/argocd-core/values.yaml`:
   - `github.org`:
     - leave empty (`""`) to allow OAuth login without org restriction
     - set to a real GitHub organization slug to enforce org membership

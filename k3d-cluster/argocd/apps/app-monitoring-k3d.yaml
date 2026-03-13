@@ -17,7 +17,7 @@ spec:
       helm:
         valueFiles:
           - values.yaml
-      path: 'k3d-cluster/charts/monitoring'
+      path: 'k3d-cluster/manifests/monitoring'
     - repoURL: 'https://github.com/marcobradley/local-kubernetes-cluster-demo.git'
       targetRevision: 'main'
       ref: values

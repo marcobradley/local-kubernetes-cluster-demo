@@ -48,7 +48,7 @@ kubectl wait --for=condition=Ready node --all --timeout=120s
 ```powershell
 kubectl get nodes
 kubectl get ns
-kubectl get applications -n argocd
+kubectl get argocd/apps -n argocd
 kubectl get pods -A
 ```
 
