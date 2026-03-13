@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: argocd-rbac-cm
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   # Keep default read-only for unmapped users/groups.
   policy.default: role:readonly

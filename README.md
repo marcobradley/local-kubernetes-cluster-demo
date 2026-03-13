@@ -287,14 +287,6 @@ Troubleshooting:
 This flow follows the same architecture shown in:
 https://dev.to/3deep5me/using-1password-with-external-secrets-operator-in-a-gitops-way-4lo4
 
-Apply Argo CD apps for 1Password Connect and External Secrets Operator:
-
-```powershell
-kubectl apply -f .\k3d-cluster\argocd\app-1password-connect.yaml
-kubectl apply -f .\k3d-cluster\argocd\app-external-secrets-operator.yaml
-kubectl get pods -n external-secrets
-```
-
 Create a 1Password vault + connect server (requires `op` CLI):
 
 ```powershell
@@ -305,7 +297,17 @@ op connect server create "Kubernetes" --vaults "K3s"
 Create the Connect credentials secret in Kubernetes (`op-credentials`):
 
 ```powershell
-kubectl create secret generic op-credentials -n external-secrets --from-file=1password-credentials.json="C:\path\to\1password-credentials.json"
+.\scripts\set-1password-connect-secrets.ps1 -CredentialsFile "C:\path\to\1password-credentials.json"
+```
+
+`1password-credentials.json` must be stored in the `op-credentials` secret as a base64-encoded string value for this Connect deployment. Using `--from-file` stores the raw JSON payload and causes Connect startup to fail with `illegal base64 data at input byte 0`.
+
+Apply Argo CD apps for 1Password Connect and External Secrets Operator:
+
+```powershell
+kubectl apply -f .\k3d-cluster\argocd\app-1password-connect.yaml
+kubectl apply -f .\k3d-cluster\argocd\app-external-secrets-operator.yaml
+kubectl get pods -n external-secrets
 ```
 
 Create a token for External Secrets Operator and store it in Kubernetes:
@@ -315,11 +317,17 @@ $token = op connect token create "external-secret-operator" --server "Kubernetes
 kubectl create secret generic onepassword-connect-token -n external-secrets --from-literal=token="$token"
 ```
 
+Or let the helper script create or refresh both secrets in one step:
+
+```powershell
+.\scripts\set-1password-connect-secrets.ps1 -CredentialsFile "C:\path\to\1password-credentials.json" -CreateTokenFromOp -ConnectServerName "Kubernetes" -Vault "K3s" -TokenName "external-secret-operator"
+```
+
 Apply the SecretStore configuration:
 
 ```powershell
 kubectl apply -f .\k3d-cluster\external-secrets\clustersecretstore-1password.yaml
-kubectl get clustersecretstore onepassword-k8s
+kubectl get clustersecretstore onepassword-k3s
 ```
 
 End-to-end test with an example item + ExternalSecret:
