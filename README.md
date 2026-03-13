@@ -323,6 +323,10 @@ Or let the helper script create or refresh both secrets in one step:
 .\scripts\set-1password-connect-secrets.ps1 -CredentialsFile "C:\path\to\1password-credentials.json" -CreateTokenFromOp -ConnectServerName "Kubernetes" -Vault "K3s" -TokenName "external-secret-operator"
 ```
 
+When token creation is enabled, the script writes both token secrets by default:
+- `onepassword-connect-token` (used by `ClusterSecretStore` in this repo)
+- `external-secret-operator` (compatibility alias for downstream references)
+
 Apply the SecretStore configuration:
 
 ```powershell

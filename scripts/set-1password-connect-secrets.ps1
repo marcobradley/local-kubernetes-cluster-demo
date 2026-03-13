@@ -5,7 +5,9 @@ param(
     [switch]$CreateTokenFromOp,
     [string]$ConnectServerName = "Kubernetes",
     [string]$Vault = "K3s",
-    [string]$TokenName = "external-secret-operator"
+    [string]$TokenName = "external-secret-operator",
+    [string]$TokenSecretName = "onepassword-connect-token",
+    [string]$LegacyTokenSecretName = "external-secret-operator"
 )
 
 $ErrorActionPreference = "Stop"
@@ -31,7 +33,28 @@ function Invoke-KubectlYamlApply {
     }
 }
 
+function Ensure-Namespace {
+    param([string]$Name)
+
+    $existing = & kubectl get namespace $Name --ignore-not-found -o name 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to check namespace '$Name'."
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($existing)) {
+        return
+    }
+
+    & kubectl create namespace $Name | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to create namespace '$Name'."
+    }
+
+    Write-Host "Created namespace '$Name'."
+}
+
 Require-Command kubectl
+Ensure-Namespace -Name $Namespace
 
 if (-not (Test-Path $CredentialsFile)) {
     throw "Credentials file '$CredentialsFile' was not found."
@@ -61,16 +84,25 @@ if ($CreateTokenFromOp) {
 }
 
 if ($Token) {
-    $tokenArgs = @(
-        'create', 'secret', 'generic', 'onepassword-connect-token',
-        '-n', $Namespace,
-        "--from-literal=token=$Token",
-        '--dry-run=client', '-o', 'yaml'
-    )
+    $tokenSecretNames = @($TokenSecretName)
+    if ($LegacyTokenSecretName -and ($LegacyTokenSecretName -ne $TokenSecretName)) {
+        $tokenSecretNames += $LegacyTokenSecretName
+    }
 
-    Invoke-KubectlYamlApply -Arguments $tokenArgs
+    foreach ($secretName in $tokenSecretNames) {
+        $tokenArgs = @(
+            'create', 'secret', 'generic', $secretName,
+            '-n', $Namespace,
+            "--from-literal=token=$Token",
+            '--dry-run=client', '-o', 'yaml'
+        )
 
-    Write-Host "Configured secret 'onepassword-connect-token' in namespace '$Namespace'."
+        Invoke-KubectlYamlApply -Arguments $tokenArgs
+        Write-Host "Configured secret '$secretName' in namespace '$Namespace'."
+    }
+}
+else {
+    Write-Warning "No token was provided. Token secrets '$TokenSecretName' and '$LegacyTokenSecretName' were not created. Use -Token or -CreateTokenFromOp."
 }
 
 Write-Host "1Password Connect secret bootstrap completed."
