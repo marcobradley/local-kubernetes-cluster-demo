@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: istio-ztunnel
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/background
   annotations:
     argocd.argoproj.io/sync-wave: "3"
 spec:

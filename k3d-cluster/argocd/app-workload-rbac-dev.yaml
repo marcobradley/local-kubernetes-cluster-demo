@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: 'app-workload-rbac-dev'
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/background
 spec:
   destination:
     namespace: 'dev'
@@ -14,7 +16,7 @@ spec:
         - values.yaml
         - values-dev.yaml
     path: 'k3d-cluster/charts/workload-rbac'
-    repoURL: 'git@github.com:marcobradley/local-kubernetes-cluster-demo.git'
+    repoURL: 'https://github.com/marcobradley/local-kubernetes-cluster-demo.git'
     targetRevision: 'main'
   project: 'default'
   syncPolicy:

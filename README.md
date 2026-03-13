@@ -117,7 +117,7 @@ These are the platform add-ons used in the cluster.
 #### Installing Argo CD into the cluster
 
 ```
-kubectl create namespace argocd  # if you haven’t already
+kubectl apply -f .\k3d-cluster\argocd\ns-argocd.yaml
 kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
@@ -127,6 +127,7 @@ Apply Argo CD core first (manages `argocd-cmd-params-cm` + ingress), then worklo
 
 ```powershell
 kubectl apply -f .\k3d-cluster\argocd\app-argocd-core.yaml
+kubectl apply -f .\k3d-cluster\argocd\app-argocd-addons.yaml
 kubectl apply -f .\k3d-cluster\argocd\app-argocd-dev.yaml
 ```
 
