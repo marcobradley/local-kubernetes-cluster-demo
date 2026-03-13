@@ -16,7 +16,7 @@ spec:
         - values.yaml
     path: 'k3d-cluster/manifests/cluster-rbac'
     repoURL: 'https://github.com/marcobradley/local-kubernetes-cluster-demo.git'
-    targetRevision: 'refactor'
+    targetRevision: 'v4'
   project: 'default'
   syncPolicy:
     automated:

@@ -17,7 +17,7 @@ spec:
         - values-dev.yaml
     path: 'k3d-cluster/manifests/api-demo'
     repoURL: 'https://github.com/marcobradley/local-kubernetes-cluster-demo.git'
-    targetRevision: 'refactor'
+    targetRevision: 'v4'
   project: 'default'
   syncPolicy:
     automated:
