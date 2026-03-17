@@ -48,11 +48,56 @@ function Step {
     Write-Host "`n==> $Label" -ForegroundColor Cyan
 }
 
+function Get-ClusterNameFromConfig {
+    param([string]$Path)
+
+    if (-not (Test-Path $Path)) {
+        throw "Cluster config '$Path' was not found."
+    }
+
+    $nameLine = Get-Content -Path $Path | Where-Object { $_ -match '^\s*name:\s*' } | Select-Object -First 1
+    if (-not $nameLine) {
+        throw "Unable to determine cluster name from '$Path'. Expected 'metadata.name'."
+    }
+
+    return (($nameLine -replace '^\s*name:\s*', '').Trim())
+}
+
+function Test-K3dClusterExists {
+    param([string]$ClusterName)
+
+    $clusters = & k3d cluster list -o json
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to list k3d clusters."
+    }
+
+    if ([string]::IsNullOrWhiteSpace($clusters)) {
+        return $false
+    }
+
+    $parsed = $clusters | ConvertFrom-Json
+    foreach ($cluster in @($parsed)) {
+        if ($cluster.name -eq $ClusterName) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+$clusterConfigPath = '.\k3d-cluster\cluster\config.yaml'
+$clusterName = Get-ClusterNameFromConfig -Path $clusterConfigPath
+
 # ---------------------------------------------------------------------------
 # 1. Create k3d cluster
 # ---------------------------------------------------------------------------
-Step "Creating k3d cluster"
-Invoke-Native k3d @('cluster', 'create', '--config', '.\k3d-cluster\cluster\config.yaml')
+Step "Ensuring k3d cluster '$clusterName' exists"
+if (Test-K3dClusterExists -ClusterName $clusterName) {
+    Write-Host "  Cluster '$clusterName' already exists. Skipping create step." -ForegroundColor Yellow
+}
+else {
+    Invoke-Native k3d @('cluster', 'create', '--config', $clusterConfigPath)
+}
 
 # ---------------------------------------------------------------------------
 # 2. Cluster RBAC
