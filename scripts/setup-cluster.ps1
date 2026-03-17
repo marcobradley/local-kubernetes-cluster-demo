@@ -55,12 +55,38 @@ function Get-ClusterNameFromConfig {
         throw "Cluster config '$Path' was not found."
     }
 
-    $nameLine = Get-Content -Path $Path | Where-Object { $_ -match '^\s*name:\s*' } | Select-Object -First 1
-    if (-not $nameLine) {
+    $metadataName = $null
+    $inMetadataBlock = $false
+
+    foreach ($line in Get-Content -Path $Path) {
+        if ($line -match '^\s*metadata:\s*$') {
+            $inMetadataBlock = $true
+            continue
+        }
+
+        if ($inMetadataBlock) {
+            # If we reach a new top-level key (no indentation) the metadata block is over.
+            if ($line -match '^[^\s]') {
+                $inMetadataBlock = $false
+                continue
+            }
+
+            if ($line -match '^\s*name:\s*(.+)\s*$') {
+                $metadataName = $Matches[1].Trim()
+                # Strip surrounding single or double quotes if present.
+                if ($metadataName -match "^([""'])(.*)\1$") {
+                    $metadataName = $Matches[2]
+                }
+                break
+            }
+        }
+    }
+
+    if (-not $metadataName) {
         throw "Unable to determine cluster name from '$Path'. Expected 'metadata.name'."
     }
 
-    return (($nameLine -replace '^\s*name:\s*', '').Trim())
+    return $metadataName
 }
 
 function Test-K3dClusterExists {
@@ -98,6 +124,11 @@ if (Test-K3dClusterExists -ClusterName $clusterName) {
 else {
     Invoke-Native k3d @('cluster', 'create', '--config', $clusterConfigPath)
 }
+
+# Ensure the cluster is running and kubectl points to the k3d context.
+Step "Ensuring k3d cluster '$clusterName' is running and kubeconfig context is set"
+Invoke-Native k3d @('cluster', 'start', $clusterName)
+Invoke-Native k3d @('kubeconfig', 'merge', $clusterName, '--switch-context')
 
 # ---------------------------------------------------------------------------
 # 2. Cluster RBAC
