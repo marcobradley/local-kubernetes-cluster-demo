@@ -120,6 +120,8 @@ $clusterName = Get-ClusterNameFromConfig -Path $clusterConfigPath
 Step "Ensuring k3d cluster '$clusterName' exists"
 if (Test-K3dClusterExists -ClusterName $clusterName) {
     Write-Host "  Cluster '$clusterName' already exists. Skipping create step." -ForegroundColor Yellow
+    Write-Host "  NOTE: Changes to '$clusterConfigPath' (ports, k3s image version, etc.) will NOT be applied to the existing cluster." -ForegroundColor Yellow
+    Write-Host "        To apply config changes, delete the cluster first (e.g. 'k3d cluster delete $clusterName') and then rerun this script." -ForegroundColor Yellow
 }
 else {
     Invoke-Native k3d @('cluster', 'create', '--config', $clusterConfigPath)
