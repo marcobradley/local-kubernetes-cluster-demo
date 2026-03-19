@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.0...v0.0.0-development) (2026-03-15)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.1...v0.0.0-development) (2026-03-17)
 
 ### ⚠ BREAKING CHANGES
 
@@ -94,9 +94,12 @@
 * adding package.json ([0dbfd6e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0dbfd6e06ccfce343beb67a0309159da8471a09a))
 * adding permission ([f23b98f](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f23b98f13f92ae59a2c10a4cfb91041c405e82f0))
 * adding readme context ([0f00ed7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0f00ed7ac0ccfa712fbed414983254f486af5bb0))
+* Apply suggestions from code review ([3cc6c50](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3cc6c50ff079281bab1300fd36df09260dfba247))
+* Apply suggestions from code review ([e54d1c7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/e54d1c7d67b0ad0526007777466765eac65c4a76))
 * Change token for changelog pull request action ([0751f0d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0751f0d2f67c2eabe9466efaf1996df7d2285ef6))
 * correct the helm values location ([168014e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/168014e55b938ea26203e25196548d9c7c6879fa))
 * corrected NS of the route and updated the gateway to accept traffic ([ce585a4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ce585a436e57ad92ab03dceab7b530a7183bee31))
+* corrected revision number ([ded1282](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ded128270acf8546e79d579e65d09fade954d608))
 * corrected the image path ([6c52957](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6c5295742092da15ad6227400edfd20534c33492))
 * corrected the paths ([0b0f1e1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0b0f1e1c70a72a07be44ff6754728cb0fbad01f5))
 * corrected the role bindings ([95d1696](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/95d169640cf21e6e58de7f967cdab58d129321f9))
@@ -143,6 +146,7 @@
 * updated the port ([8ab9673](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/8ab9673240719cdae5bd4bce5494b9662d01ac23))
 * updated url to use ssh ([2a8a4d4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2a8a4d4855ffbc287417fb34a4b4c4aa0e0058f8))
 * use branches for now ([749a93c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/749a93c3d8be2cbda79c0a10bba4a5c1233074e7))
+* version v4 tag doesn't exist ([a2b31fa](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a2b31fac66e0df00236a4e1b8e6c8acc255727f5))
 
 ## [0.1.0](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v0.0.2...v0.1.0) (2026-02-20)
 
