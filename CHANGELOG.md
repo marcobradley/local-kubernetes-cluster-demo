@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.1...v0.0.0-development) (2026-03-17)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.1...v0.0.0-development) (2026-03-19)
 
 ### ⚠ BREAKING CHANGES
 
