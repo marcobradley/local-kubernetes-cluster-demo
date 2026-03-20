@@ -16,7 +16,7 @@ spec:
         - values.yaml
     path: 'k3d-cluster/manifests/argocd-core'
     repoURL: 'https://github.com/marcobradley/local-kubernetes-cluster-demo.git'
-    targetRevision: 'main'
+    targetRevision: "v4.0.2"
   project: 'default'
   syncPolicy:
     automated:
