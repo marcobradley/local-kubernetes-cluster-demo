@@ -14,7 +14,8 @@
 #>
 param(
     [string]$CredentialsFile = ".\1password-credentials.json",
-    [string]$Token
+    [string]$Token,
+    [switch]$installIstio = $false
 )
 
 $ErrorActionPreference = "Stop"
@@ -215,6 +216,7 @@ Invoke-Native kubectl @('rollout', 'status', 'deployment/argocd-server', '-n', '
 # ---------------------------------------------------------------------------
 Step "Applying cluster RBAC"
 Invoke-Native kubectl @('apply', '-f', '.\k3d-cluster\argocd\apps\app-cluster-rbac.yaml')
+Wait-ArgoApp -Name 'app-cluster-rbac'
 
 # ---------------------------------------------------------------------------
 # 5. Bootstrap 1Password Connect secrets
@@ -280,16 +282,21 @@ Write-Host "  Open https://argocd.localhost:8443 and log in with username 'admin
 # ---------------------------------------------------------------------------
 # 10-13. Istio (applied in dependency order)
 # ---------------------------------------------------------------------------
-$istioApps = @(
-    @{ File = 'app-istio-base.yaml';    Name = 'istio-base'    }
-    @{ File = 'app-istio-cni.yaml';     Name = 'istio-cni'     }
-    @{ File = 'app-istiod.yaml';        Name = 'istiod'        }
-    @{ File = 'app-istio-ztunnel.yaml'; Name = 'istio-ztunnel' }
-)
-foreach ($app in $istioApps) {
-    Step "Applying $($app.Name)"
-    Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\$($app.File)")
-    Wait-ArgoApp -Name $app.Name
+if ($installIstio) {
+    $istioApps = @(
+        @{ File = 'app-istio-base.yaml';    Name = 'istio-base'    }
+        @{ File = 'app-istio-cni.yaml';     Name = 'istio-cni'     }
+        @{ File = 'app-istiod.yaml';        Name = 'istiod'        }
+        @{ File = 'app-istio-ztunnel.yaml'; Name = 'istio-ztunnel' }
+    )
+    foreach ($app in $istioApps) {
+        Step "Applying $($app.Name)"
+        Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\$($app.File)")
+        Wait-ArgoApp -Name $app.Name
+    }
+}
+else {
+    Write-Host "Istio installation skipped. If you want to install Istio, set `\$installIstio = $true` at the top of this script." -ForegroundColor Yellow
 }
 
 # ---------------------------------------------------------------------------

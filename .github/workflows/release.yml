@@ -20,12 +20,43 @@ jobs:
           persist-credentials: false
 
       - name: Semantic Release
+        id: semantic_release
         uses: cycjimmy/semantic-release-action@v4 # Use the specific action
         with:
           extra_plugins: |
             conventional-changelog-conventionalcommits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update major and minor release tags
+        if: steps.semantic_release.outputs.new_release_published == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.semantic_release.outputs.new_release_version }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          FULL_TAG="v${RELEASE_VERSION}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${RELEASE_VERSION}"
+
+          if [[ -z "${MAJOR}" || -z "${MINOR}" || -z "${PATCH}" ]]; then
+            echo "Unable to parse semantic version '${RELEASE_VERSION}'."
+            exit 1
+          fi
+
+          MAJOR_TAG="v${MAJOR}"
+          MINOR_TAG="v${MAJOR}.${MINOR}"
+
+          git fetch --tags --force
+          TARGET_SHA="$(git rev-list -n 1 "${FULL_TAG}")"
+
+          git tag -f "${MAJOR_TAG}" "${TARGET_SHA}"
+          git tag -f "${MINOR_TAG}" "${TARGET_SHA}"
+
+          REMOTE_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY}.git"
+          git push "${REMOTE_URL}" "refs/tags/${MAJOR_TAG}" --force
+          git push "${REMOTE_URL}" "refs/tags/${MINOR_TAG}" --force
 
   changelog-pr:
     needs: release
