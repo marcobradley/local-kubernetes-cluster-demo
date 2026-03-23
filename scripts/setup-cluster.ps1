@@ -305,7 +305,7 @@ else {
 # ---------------------------------------------------------------------------
 if ($installGrafana) {
     Step "Applying Grafana"
-    Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\app-grafana.yaml")
+    Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\app-monitoring-k3d.yaml")
     Wait-ArgoApp -Name 'grafana'
 }
 else {
