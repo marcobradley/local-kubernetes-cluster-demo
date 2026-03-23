@@ -15,7 +15,8 @@
 param(
     [string]$CredentialsFile = ".\1password-credentials.json",
     [string]$Token,
-    [switch]$installIstio = $false
+    [switch]$installIstio = $false,
+    [switch]$installGrafana = $false
 )
 
 $ErrorActionPreference = "Stop"
@@ -300,7 +301,19 @@ else {
 }
 
 # ---------------------------------------------------------------------------
-# 14. Dev apps
+# 14. Grafana core configuration
+# ---------------------------------------------------------------------------
+if ($installGrafana) {
+    Step "Applying Grafana"
+    Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\app-monitoring-k3d.yaml")
+    Wait-ArgoApp -Name 'grafana'
+}
+else {
+    Write-Host "Grafana installation skipped. If you want to install Grafana, set `\$installGrafana = $true` at the top of this script." -ForegroundColor Yellow
+}
+
+# ---------------------------------------------------------------------------
+# 15. Dev apps
 # ---------------------------------------------------------------------------
 Step "Applying dev Argo CD apps"
 Invoke-Native kubectl @('apply', '-f', '.\k3d-cluster\argocd\apps\app-argocd-dev.yaml')
