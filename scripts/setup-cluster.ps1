@@ -15,7 +15,7 @@
 param(
     [string]$CredentialsFile = ".\1password-credentials.json",
     [string]$Token,
-    [switch]$installIstio = $false
+    [switch]$installIstio = $false,
     [switch]$installGrafana = $false
 )
 
