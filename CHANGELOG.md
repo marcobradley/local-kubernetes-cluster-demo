@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.3...v0.0.0-development) (2026-03-23)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.4...v0.0.0-development) (2026-03-24)
 
 ### ⚠ BREAKING CHANGES
 
@@ -87,6 +87,7 @@
 
 * Add permissions for pull request workflow ([c084ea7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c084ea7d9eb3af47c9314a80f2956d957e732e6c))
 * added override for the cniBinDir ([cb102d6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cb102d66cd439f0e55ef02c8c45d55788f1c15ad))
+* adding a restore script to restore from a previous backup folder ([7d74a9b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7d74a9bee8dfe60646786a9155d84d6033d19375))
 * adding a sync drift ignore for the istiod-default-validator ([01377ed](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/01377ede071bd289719b009aff2703b0299f2780))
 * adding back missing secret missing secret ([266d9a8](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/266d9a8ab384c90d81fac7aa7c24be47a9635a4d))
 * adding github actions workflow for release ([9d1ca79](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9d1ca799d51ed648cdcd96cbcfad25d5915ef2ac))
@@ -104,6 +105,7 @@
 * corrected the paths ([0b0f1e1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0b0f1e1c70a72a07be44ff6754728cb0fbad01f5))
 * corrected the role bindings ([95d1696](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/95d169640cf21e6e58de7f967cdab58d129321f9))
 * correcting circle logic issue with argocd ([bb2c035](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb2c035e426c7a6b5876f71c15da70c63a206c37))
+* correcting grafana datasources ([1ddd3eb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1ddd3eba5b54c01ae33ea6809639519b2c1fbed8))
 * correcting secrets for argocd ([5259960](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/52599609d4165b343ca34af61045fd28271b8035))
 * correcting the helm structure ([a5e458b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a5e458b909fa15f23acdff3bce1376f3d7287e89))
 * created a single setup script for argocd ([4c45cde](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/4c45cdeb5a4d8365f8b0f9a1cd742432fd4057a9))
@@ -122,15 +124,18 @@
 * moved the ignore file ([8583c01](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/8583c017ae4e027aee3b6cca8c99a9b559e06e3d))
 * oauth ([5dae294](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5dae294a1df38825ff57055ab550e719385f633c))
 * reduce resources needed for the pods ([0f9f3a6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0f9f3a63a36ce77c8d53a5ab42ff24b0f73e06b9))
+* reducing the resource requirements for istio and grafana ([0b06e8a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0b06e8a017ae2badc443d37464b362fb4db576a1))
 * remove localhost rule from argocd ingress to avoid route conflicts ([b181936](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b18193606d1d2455e388b5ca8c8263c25ce43973))
 * Removed extra ArgoCD application sources ([30aa6b7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/30aa6b7f38a3857d46d6f71a705d0eabba387937))
 * removed incorrect ambient labeling ([44ea69b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/44ea69bf0a739f202463fe306fe7cf96b344695b))
 * removed nodejs ([1a88ce3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1a88ce3303154bf8034166a32f4e74d1fb6ac846))
 * removed org for local ([f59c970](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f59c97079e9dcc4ab9a0d62b87735e9a3423f495))
+* removed tls requirement for local prometheus operator ([279ee22](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/279ee22076cafec32590865d48646939ec9cdc4e))
 * removed unused template ([40ab598](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/40ab598e6c17f66838e7269e7fe999e22fb02492))
 * reworked app of apps setup ([cea89c1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cea89c107d191d09450cac4f1773e684c2b11597))
 * reworking the logic for argocd-core ([b4a29e2](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b4a29e233b0a82efcd6d1dd576fe0ac6136c85f6))
 * set gateway type to NodePort and point to the port 30000 ([2db61a0](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2db61a016f9c97bdc8ab1adee428e254711f1ee3))
+* set monitoring to use the v4 major version ([7cd697e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7cd697ec57bfe749b98c4ace404884cb8164b710))
 * set the version to the major version v4 ([bb75bb6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb75bb612dd5a421b6555b57a044577da9f6386f))
 * set up the templates correctly ([1c69883](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1c698836c89b01449cd6f9c4372df24435318bfb))
 * update action ([9a6b369](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9a6b369d1cb6cd6cc1a51c93513459df320ad4fe))
