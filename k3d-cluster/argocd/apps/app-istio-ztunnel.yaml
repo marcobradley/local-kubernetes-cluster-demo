@@ -17,6 +17,15 @@ spec:
     repoURL: https://istio-release.storage.googleapis.com/charts
     targetRevision: "1.29"
     chart: ztunnel
+    helm:
+      values: |
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
   syncPolicy:
     automated:
       prune: true
