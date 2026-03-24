@@ -27,6 +27,14 @@ spec:
     helm:
       values: |
         profile: ambient
+        pilot:
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
   syncPolicy:
     automated:
       prune: true
