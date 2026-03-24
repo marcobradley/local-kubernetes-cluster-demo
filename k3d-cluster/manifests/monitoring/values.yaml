@@ -5,6 +5,9 @@ grafana:
       access: proxy
       url: http://monitoring-k3d-kube-promet-prometheus.monitoring.svc.cluster.local:9090
       isDefault: true
+  sidecar:
+    datasources:
+      isDefaultDatasource: false
   ingress:
     enabled: true
     ingressClassName: traefik
