@@ -5,8 +5,8 @@ metadata:
   namespace: {{ .Values.csharp_api.namespace }}
 spec:
   podSelector:
-  matchLabels:
-    app: {{ .Values.csharp_api.name }}
+    matchLabels:
+      app: {{ .Values.csharp_api.name }}
   policyTypes:
   - Ingress
   - Egress

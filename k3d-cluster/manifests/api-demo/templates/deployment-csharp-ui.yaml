@@ -19,7 +19,7 @@ spec:
         name: "{{ .Values.csharp_ui.name }}"
         ports:
         - containerPort: !!int "{{ .Values.csharp_ui.service.targetPort }}"
-        environment:
+        env:
         - name: API_BASE_URL
           value: "http://{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local:{{ .Values.csharp_api.service.port }}"
         resources:
