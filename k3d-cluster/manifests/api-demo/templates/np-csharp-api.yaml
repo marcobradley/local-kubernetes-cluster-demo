@@ -13,16 +13,16 @@ spec:
   ingress:
   - from:
     - podSelector:
-      matchLabels:
-        app: {{ .Values.csharp_ui.name }}
+        matchLabels:
+          app: {{ .Values.csharp_ui.name }}
     ports:
     - protocol: TCP
       port: {{ .Values.csharp_ui.service.port }}
   egress:
   - to:
   - podSelector:
-    matchLabels:
-      app: {{ .Values.csharp_ui.name }}
+      matchLabels:
+        app: {{ .Values.csharp_ui.name }}
     ports:
     - protocol: TCP
       port: {{ .Values.csharp_ui.service.port }}
