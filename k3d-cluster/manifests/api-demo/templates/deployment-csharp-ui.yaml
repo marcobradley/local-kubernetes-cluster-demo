@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.csharp_ui.name }}-deployment"
+  namespace: "{{ .Values.csharp_ui.namespace }}"
+spec:
+  replicas: !!int "{{ .Values.csharp_ui.replicaCount }}"
+  selector:
+    matchLabels:
+      app: "{{ .Values.csharp_ui.name }}"
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.csharp_ui.name }}"
+    spec:
+      containers:
+      - image: "{{ .Values.csharp_ui.image.repository }}:{{ .Values.csharp_ui.image.tag }}"
+        name: "{{ .Values.csharp_ui.name }}"
+        ports:
+        - containerPort: !!int "{{ .Values.csharp_ui.service.targetPort }}"
+        environment:
+        - name: API_BASE_URL
+          value: "http://{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local:{{ .Values.csharp_api.service.port }}"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
