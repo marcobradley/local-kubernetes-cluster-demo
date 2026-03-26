@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.1...v0.0.0-development) (2026-03-26)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.2...v0.0.0-development) (2026-03-26)
 
 ### ⚠ BREAKING CHANGES
 
@@ -116,6 +116,7 @@
 * fixed path to charts ([3af26e1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3af26e138e83c7e08488386f9aeb5ad84177efa2))
 * fixed path to use linux path structure ([78a20fb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/78a20fb75f207f4aa6a68ae4f138a18d7c879dd5))
 * fixing RBAC for oauth ([a490971](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a4909712984152d04fea1389e3d5c30cf2a48e0e))
+* fixing the network policy ([42fb028](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/42fb0286fff787757e0c9141af53d9cab70bda01))
 * hardened setup scripts to avoid race conditions and add checks ([eb02b4d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/eb02b4d5ef82344f8af578db5a5f2763a5d1e324))
 * incorrect syntax ([9917e9e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9917e9ec97aae2ef510260883b28d85f67e8eed1))
 * minor updates to fix versioning and make istio an optional addon ([89bf06a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/89bf06a2d12dc7d7437a2acf047bf0f7cca457c1))
