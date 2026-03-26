@@ -24,6 +24,19 @@ csharp_api:
     type: ClusterIP
     port: 80
     targetPort: 5113
+csharp_ui:
+  name: csharp-ui
+  namespace: dev
+  replicaCount: 1
+  image:
+    repository: 'mbradleyhome/csharp-ui-demo'
+    tag: 'latest'
+    pullPolicy: IfNotPresent
+  service:
+    name: csharp-ui-svc
+    type: ClusterIP
+    port: 80
+    targetPort: 80
 ollama_api:
   name: ollama-api
   namespace: dev
