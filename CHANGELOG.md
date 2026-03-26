@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.0.4...v0.0.0-development) (2026-03-24)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.0...v0.0.0-development) (2026-03-26)
 
 ### ⚠ BREAKING CHANGES
 
@@ -43,6 +43,7 @@
 ### Features
 
 * add ingress for go api ([fed7ce5](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/fed7ce5a895f71de8e684f170f132a10c9f79b7e))
+* adding csharp ui container ([7de97cf](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7de97cfbfab964b7976d1af662c0238a18cbebc3))
 * Adding envoy gateway ([5e24ebc](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5e24ebc9f8d472f64122d9acc75745f280e89ce0))
 * adding envoy proxy gateway settings ([c958c40](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c958c40e713343a7da0021ec2197cf728073b1ba))
 * adding go svc ([0d3fa7d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0d3fa7db6a4c1ccdebf39c1a9227b6f4b8dccd73))
