@@ -14,8 +14,7 @@ spec:
         prefix: "/besttimetobyorsellstock"
     route:
     - destination:
-        hosts:
-          - {{ .Values.csharp_api.service.name }}
+        host: {{ .Values.csharp_api.service.name }}
         http:
         - route:
           - destination:
