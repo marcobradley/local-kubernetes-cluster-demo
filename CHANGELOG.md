@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.8...v0.0.0-development) (2026-03-27)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.9...v0.0.0-development) (2026-03-27)
 
 ### ⚠ BREAKING CHANGES
 
@@ -138,6 +138,7 @@
 * removed tls requirement for local prometheus operator ([279ee22](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/279ee22076cafec32590865d48646939ec9cdc4e))
 * removed unused template ([40ab598](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/40ab598e6c17f66838e7269e7fe999e22fb02492))
 * removing env variable to default to the UI service ([e4826ed](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/e4826ed77fcf1a8c34000dcd6f0736f8d26d0509))
+* removing network policy to test ([e9e0e7f](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/e9e0e7fdf3916d17ae9b7474278bb2773fefca35))
 * reworked app of apps setup ([cea89c1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cea89c107d191d09450cac4f1773e684c2b11597))
 * reworking the logic for argocd-core ([b4a29e2](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b4a29e233b0a82efcd6d1dd576fe0ac6136c85f6))
 * set gateway type to NodePort and point to the port 30000 ([2db61a0](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2db61a016f9c97bdc8ab1adee428e254711f1ee3))
