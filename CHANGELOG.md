@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.2...v0.0.0-development) (2026-03-26)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.4...v0.0.0-development) (2026-03-27)
 
 ### ⚠ BREAKING CHANGES
 
@@ -108,6 +108,7 @@
 * correcting circle logic issue with argocd ([bb2c035](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb2c035e426c7a6b5876f71c15da70c63a206c37))
 * correcting grafana datasources ([1ddd3eb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1ddd3eba5b54c01ae33ea6809639519b2c1fbed8))
 * correcting secrets for argocd ([5259960](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/52599609d4165b343ca34af61045fd28271b8035))
+* correcting syntax ([ee93e0a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ee93e0a83006c1eb9c91b9500b543a0a53c393a1))
 * correcting the helm structure ([a5e458b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a5e458b909fa15f23acdff3bce1376f3d7287e89))
 * created a single setup script for argocd ([4c45cde](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/4c45cdeb5a4d8365f8b0f9a1cd742432fd4057a9))
 * Fix UTF-8 encoding issue in deployment-go-api.yaml ([3b07814](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3b078143775800d2394d23eceb0530f42917676d))
@@ -157,6 +158,7 @@
 * updated url to use ssh ([2a8a4d4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2a8a4d4855ffbc287417fb34a4b4c4aa0e0058f8))
 * use branches for now ([749a93c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/749a93c3d8be2cbda79c0a10bba4a5c1233074e7))
 * version v4 tag doesn't exist ([a2b31fa](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a2b31fac66e0df00236a4e1b8e6c8acc255727f5))
+* yaml synax fix ([dd2025e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/dd2025ecfc9ec454f2badfcea02bb0d30816453c))
 
 ## [0.1.0](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v0.0.2...v0.1.0) (2026-02-20)
 
