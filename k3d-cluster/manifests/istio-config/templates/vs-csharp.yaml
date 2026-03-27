@@ -20,7 +20,7 @@ spec:
         subset: v1
     corsPolicy:
       allowOrigins:
-      - prefix: "http://csharp-ui.localhost"
+      - regex: "http://csharp-ui.localhost"
       allowMethods:
       - GET
       - POST
