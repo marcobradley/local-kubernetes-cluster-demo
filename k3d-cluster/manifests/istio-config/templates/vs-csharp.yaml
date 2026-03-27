@@ -15,6 +15,11 @@ spec:
     route:
     - destination:
         host: {{ .Values.csharp_api.service.name }}
+        http:
+        - route:
+          - destination:
+              host: {{ .Values.csharp_api.service.name }}
+              subset: v1
 ---
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
@@ -23,3 +28,7 @@ metadata:
   namespace: {{ .Values.csharp_ui.namespace }}
 spec:
   host: {{ .Values.csharp_api.service.name }}
+  subsets:
+  - name: v1
+    labels:
+      version: v1
