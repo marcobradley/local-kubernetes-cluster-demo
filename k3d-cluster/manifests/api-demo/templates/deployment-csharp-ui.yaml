@@ -21,7 +21,7 @@ spec:
         - containerPort: !!int "{{ .Values.csharp_ui.service.targetPort }}"
         env:
         - name: API_BASE_URL
-          value: "http://{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local:{{ .Values.csharp_api.service.port }}"
+          value: "http://{{ .Values.csharp_ui.service.name }}.{{ .Values.csharp_ui.namespace }}.svc.cluster.local:{{ .Values.csharp_ui.service.port }}"
         resources:
           requests:
             memory: "64Mi"
