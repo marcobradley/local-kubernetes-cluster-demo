@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: "{{ .Values.csharp_api.name }}-deployment"
   namespace: "{{ .Values.csharp_api.namespace }}"
+  labels:
+    version: v1
 spec:
   replicas: !!int "{{ .Values.csharp_api.replicaCount }}"
   selector:

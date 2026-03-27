@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: "{{ .Values.csharp_api.service.name }}"
   namespace: "{{ .Values.csharp_api.namespace }}"
-  labels:
-    version: v1
 spec:
   ports:
   - name: http
