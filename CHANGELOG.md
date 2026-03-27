@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.7...v0.0.0-development) (2026-03-27)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.8...v0.0.0-development) (2026-03-27)
 
 ### ⚠ BREAKING CHANGES
 
@@ -145,6 +145,7 @@
 * set the version to the major version v4 ([bb75bb6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb75bb612dd5a421b6555b57a044577da9f6386f))
 * set up the templates correctly ([1c69883](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1c698836c89b01449cd6f9c4372df24435318bfb))
 * update action ([9a6b369](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9a6b369d1cb6cd6cc1a51c93513459df320ad4fe))
+* update API base url ([941effc](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/941effc3bd426bf2840492f77fc94cef46112654))
 * update app to autofind files under directory ([37d0968](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/37d0968d6b7ae33050cd89b3e687371bd6ba310e))
 * update helm to just use inline values ([3a84d7e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3a84d7ea465de834f03559ed189884b50ff2e40e))
 * update README and rename kind config file ([159fe0e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/159fe0ec4b62d90aea2ce74ed72a8652c965638d))
