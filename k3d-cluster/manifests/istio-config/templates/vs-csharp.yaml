@@ -21,6 +21,11 @@ spec:
     corsPolicy:
       allowOrigins:
       - exact: "http://csharp-ui.localhost:8080"
+      - exact: "http://csharp-ui.localhost:80"
+      - exact: "http://csharp-ui.localhost"
+      - exact: "http://localhost:8080"
+      - exact: "http://localhost:80"
+      - exact: "http://localhost"
       allowMethods:
       - GET
       - POST
