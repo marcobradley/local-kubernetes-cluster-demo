@@ -19,6 +19,9 @@ spec:
         name: "{{ .Values.csharp_ui.name }}"
         ports:
         - containerPort: !!int "{{ .Values.csharp_ui.service.targetPort }}"
+        env:
+        - name: API_BASE_URL
+          value: "http://{{ .Values.csharp_ui.name }}-ingress:8080"
         resources:
           requests:
             memory: "64Mi"
