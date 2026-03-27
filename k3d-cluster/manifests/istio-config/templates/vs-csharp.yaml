@@ -20,7 +20,7 @@ spec:
         subset: v1
     corsPolicy:
       allowOrigins:
-      - exact: "http://localhost"
+      - exact: "http://localhost:8080"
       allowMethods:
       - GET
       - POST
