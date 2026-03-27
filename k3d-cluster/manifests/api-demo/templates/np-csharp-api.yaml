@@ -1,28 +1,28 @@
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: "{{ .Values.csharp_api.name }}-np"
-  namespace: {{ .Values.csharp_api.namespace }}
-spec:
-  podSelector:
-    matchLabels:
-      app: {{ .Values.csharp_api.name }}
-  policyTypes:
-  - Ingress
-  - Egress
-  ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: {{ .Values.csharp_ui.name }}
-    ports:
-    - protocol: TCP
-      port: {{ .Values.csharp_ui.service.port }}
-  egress:
-  - to:
-    - podSelector:
-        matchLabels:
-          app: {{ .Values.csharp_ui.name }}
-    ports:
-    - protocol: TCP
-      port: {{ .Values.csharp_ui.service.port }}
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: "{{ .Values.csharp_api.name }}-np"
+#   namespace: {{ .Values.csharp_api.namespace }}
+# spec:
+#   podSelector:
+#     matchLabels:
+#       app: {{ .Values.csharp_api.name }}
+#   policyTypes:
+#   - Ingress
+#   - Egress
+#   ingress:
+#   - from:
+#     - podSelector:
+#         matchLabels:
+#           app: {{ .Values.csharp_ui.name }}
+#     ports:
+#     - protocol: TCP
+#       port: {{ .Values.csharp_ui.service.port }}
+#   egress:
+#   - to:
+#     - podSelector:
+#         matchLabels:
+#           app: {{ .Values.csharp_ui.name }}
+#     ports:
+#     - protocol: TCP
+#       port: {{ .Values.csharp_ui.service.port }}
