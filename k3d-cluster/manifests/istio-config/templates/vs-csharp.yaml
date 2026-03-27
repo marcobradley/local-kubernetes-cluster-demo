@@ -1,0 +1,16 @@
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: csharp-routes
+spec:
+  hosts:
+  - "{{ .Values.csharp_ui.service.name }}.{{ .Values.csharp_ui.namespace }}.svc.cluster.local"
+  http:
+  - name: "csharp-ui-routes"
+    match:
+    - uri:
+        prefix: "/besttimetobyorsellstock"
+    route:
+    - destination:
+        host: "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"

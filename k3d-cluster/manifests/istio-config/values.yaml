@@ -1,1 +1,14 @@
-
+csharp_api:
+  name: csharp-api
+  namespace: dev
+  service:
+    name: csharp-api-svc
+    port: 80
+    targetPort: 5113
+csharp_ui:
+  name: csharp-ui
+  namespace: dev
+  service:
+    name: csharp-ui-svc
+    port: 80
+    targetPort: 5113
