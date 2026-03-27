@@ -7,7 +7,6 @@ metadata:
 spec:
   hosts:
   - "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"
-  - "{{ .Values.csharp_ui.service.name }}.{{ .Values.csharp_ui.namespace }}.svc.cluster.local"
   http:
   - name: "csharp-ui-routes"
     match:
@@ -21,12 +20,7 @@ spec:
         subset: v1
     corsPolicy:
       allowOrigins:
-      - exact: "http://csharp-ui.localhost:8080"
-      - exact: "http://csharp-ui.localhost:80"
-      - exact: "http://csharp-ui.localhost"
-      - exact: "http://localhost:8080"
-      - exact: "http://localhost:80"
-      - exact: "http://localhost"
+      - "http://csharp-ui.localhost"
       allowMethods:
       - GET
       - POST
