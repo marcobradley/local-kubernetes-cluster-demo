@@ -20,11 +20,11 @@ spec:
         subset: v1
       corsPolicy:
         allowOrigins:
-          - exact: "http://localhost"
+        - exact: "http://localhost"
         allowMethods:
-          - GET
-          - POST
-          - OPTIONS
+        - GET
+        - POST
+        - OPTIONS
 ---
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
