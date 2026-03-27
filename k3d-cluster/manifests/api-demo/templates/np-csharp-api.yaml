@@ -20,9 +20,9 @@ spec:
       port: {{ .Values.csharp_ui.service.port }}
   egress:
   - to:
-  - podSelector:
-      matchLabels:
-        app: {{ .Values.csharp_ui.name }}
+    - podSelector:
+        matchLabels:
+          app: {{ .Values.csharp_ui.name }}
     ports:
     - protocol: TCP
       port: {{ .Values.csharp_ui.service.port }}
