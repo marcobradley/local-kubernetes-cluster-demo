@@ -15,7 +15,7 @@ spec:
     route:
     - destination:
         hosts:
-        - {{ .Values.csharp_api.service.name }}
+          - {{ .Values.csharp_api.service.name }}
         http:
         - route:
           - destination:
