@@ -18,10 +18,3 @@ spec:
                 name: "{{ .Values.csharp_ui.service.name }}"
                 port:
                   number: !!int "{{ .Values.csharp_ui.service.port }}"
-          - path: /besttimetobyorsellstock
-            pathType: Prefix
-            backend:
-              service:
-                name: "{{ .Values.csharp_api.service.name }}"
-                port:
-                  number: !!int "{{ .Values.csharp_api.service.port }}"
