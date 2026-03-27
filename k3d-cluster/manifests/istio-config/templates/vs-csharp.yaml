@@ -25,7 +25,7 @@ metadata:
   name: csharp-destinations
   namespace: {{ .Values.csharp_ui.namespace }}
 spec:
-  host: {{ .Values.csharp_api.service.name }}
+  host: "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"
   subsets:
   - name: v1
     labels:
