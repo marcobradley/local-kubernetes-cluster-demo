@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.4...v0.0.0-development) (2026-03-27)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.1.5...v0.0.0-development) (2026-03-27)
 
 ### ⚠ BREAKING CHANGES
 
@@ -93,6 +93,7 @@
 * adding back missing secret missing secret ([266d9a8](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/266d9a8ab384c90d81fac7aa7c24be47a9635a4d))
 * adding github actions workflow for release ([9d1ca79](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9d1ca799d51ed648cdcd96cbcfad25d5915ef2ac))
 * adding grafana to istio mesh ([49c536b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/49c536b9b2e19804b136c637f011a261816cb89b))
+* adding ingress path for the API ([3e2c8d3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3e2c8d32e807aabcccf84b5c3d82a4e206d5113e))
 * adding package.json ([0dbfd6e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0dbfd6e06ccfce343beb67a0309159da8471a09a))
 * adding permission ([f23b98f](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f23b98f13f92ae59a2c10a4cfb91041c405e82f0))
 * adding readme context ([0f00ed7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0f00ed7ac0ccfa712fbed414983254f486af5bb0))
