@@ -6,25 +6,27 @@ metadata:
   namespace: {{ .Values.csharp_ui.namespace }}
 spec:
   hosts:
-  - "*"
+  - {{ .Values.csharp_ui.service.name }}
   http:
   - name: "csharp-ui-routes"
     match:
-    - uri:
+    - method:
+        exact: POST
+      uri:
         prefix: "/besttimetobyorsellstock"
     route:
     - destination:
         host: {{ .Values.csharp_api.service.name }}
-        subset: v1
----
-apiVersion: networking.istio.io/v1
-kind: DestinationRule
-metadata:
-  name: csharp-destinations
-  namespace: {{ .Values.csharp_ui.namespace }}
-spec:
-  host: {{ .Values.csharp_api.service.name }}
-  subsets:
-  - name: v1
-    labels:
-      version: v1
+        # subset: v1
+# ---
+# apiVersion: networking.istio.io/v1
+# kind: DestinationRule
+# metadata:
+#   name: csharp-destinations
+#   namespace: {{ .Values.csharp_ui.namespace }}
+# spec:
+#   host: {{ .Values.csharp_api.service.name }}
+#   subsets:
+#   - name: v1
+#     labels:
+#       version: v1
