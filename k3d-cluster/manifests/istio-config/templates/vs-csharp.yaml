@@ -18,13 +18,13 @@ spec:
     - destination:
         host: "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"
         subset: v1
-      corsPolicy:
-        allowOrigins:
-        - exact: "http://localhost"
-        allowMethods:
-        - GET
-        - POST
-        - OPTIONS
+    corsPolicy:
+      allowOrigins:
+      - exact: "http://localhost"
+      allowMethods:
+      - GET
+      - POST
+      - OPTIONS
 ---
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
