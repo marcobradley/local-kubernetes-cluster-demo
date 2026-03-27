@@ -226,6 +226,8 @@ kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-base.yaml
 kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-cni.yaml
 kubectl apply -f .\k3d-cluster\argocd\apps\app-istiod.yaml
 kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-ztunnel.yaml
+# Waypoint Gateway for ambient Mesh networks
+kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml
 ```
 
 Verify apps and workloads:
