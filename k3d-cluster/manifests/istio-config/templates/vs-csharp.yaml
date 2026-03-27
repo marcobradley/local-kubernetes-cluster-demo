@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.csharp_ui.namespace }}
 spec:
   hosts:
-  - {{ .Values.csharp_ui.service.name }}
+  - "*"
   http:
   - name: "csharp-ui-routes"
     match:
