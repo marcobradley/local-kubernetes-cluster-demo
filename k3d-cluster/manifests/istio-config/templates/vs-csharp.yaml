@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.general.namespace }}
 spec:
   hosts:
-  - "{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
+  - "*{{ .Values.csharp_api.service.name }}*"
   http:
   - name: "csharp-api-routes"
     match:
