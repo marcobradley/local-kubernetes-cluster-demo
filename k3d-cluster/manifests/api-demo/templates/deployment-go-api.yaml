@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Values.go_api.name }}-deployment"
-  namespace: "{{ .Values.go_api.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
 spec:
   replicas: !!int "{{ .Values.go_api.replicaCount }}"
   selector:

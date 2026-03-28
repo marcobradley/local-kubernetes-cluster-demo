@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Values.csharp_ui.name }}-ingress"
-  namespace: "{{ .Values.csharp_ui.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:

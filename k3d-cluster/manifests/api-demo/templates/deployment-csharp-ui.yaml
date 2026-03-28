@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Values.csharp_ui.name }}-deployment"
-  namespace: "{{ .Values.csharp_ui.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
 spec:
   replicas: !!int "{{ .Values.csharp_ui.replicaCount }}"
   selector:

@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Values.go_api.name }}-ingress"
-  namespace: "{{ .Values.go_api.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:

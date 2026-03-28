@@ -3,10 +3,10 @@ apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: csharp-routes
-  namespace: {{ .Values.csharp_ui.namespace }}
+  namespace: {{ .Values.general.namespace }}
 spec:
   hosts:
-  - "{{ .Values.csharp_ui.service.name }}.{{ .Values.csharp_ui.namespace }}.svc.cluster.local"
+  - "{{ .Values.csharp_ui.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
   http:
   - name: "csharp-ui-routes"
     match:
@@ -18,7 +18,7 @@ spec:
         prefix: "/besttimetobyorsellstock"
     route:
     - destination:
-        host: "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"
+        host: "{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
         subset: v1
     corsPolicy:
       allowOrigins:
@@ -34,9 +34,9 @@ apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
   name: csharp-destinations
-  namespace: {{ .Values.csharp_ui.namespace }}
+  namespace: {{ .Values.general.namespace }}
 spec:
-  host: "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"
+  host: "{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
   subsets:
   - name: v1
     labels:

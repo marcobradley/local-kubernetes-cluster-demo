@@ -3,8 +3,8 @@ kind: Gateway
 metadata:
   labels:
     istio.io/waypoint-for: service
-  name: "waypoint-{{ .Values.csharp_api.namespace }}"
-  namespace: {{ .Values.csharp_api.namespace }}
+  name: "waypoint-{{ .Values.general.namespace }}"
+  namespace: {{ .Values.general.namespace }}
 spec:
   gatewayClassName: istio-waypoint
   listeners:

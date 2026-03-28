@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Values.ollama_api.name }}-deployment"
-  namespace: "{{ .Values.ollama_api.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
 spec:
   replicas: !!int "{{ .Values.ollama_api.replicaCount }}"
   selector:
