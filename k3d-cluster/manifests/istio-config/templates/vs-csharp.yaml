@@ -6,9 +6,9 @@ metadata:
   namespace: {{ .Values.general.namespace }}
 spec:
   hosts:
-  - "{{ .Values.csharp_ui.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
+  - "{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
   http:
-  - name: "csharp-ui-routes"
+  - name: "csharp-api-routes"
     match:
     - method:
         exact: POST
