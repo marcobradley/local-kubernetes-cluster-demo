@@ -10,10 +10,6 @@ spec:
   http:
   - name: "csharp-api-routes"
     match:
-    - method:
-        exact: POST
-    - method:
-        exact: OPTIONS
       uri:
         prefix: "/besttimetobyorsellstock"
     route:
