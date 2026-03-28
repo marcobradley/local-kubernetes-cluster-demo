@@ -10,7 +10,7 @@ spec:
   http:
   - name: "csharp-api-routes"
     match:
-      uri:
+    - uri:
         prefix: "/besttimetobyorsellstock"
     route:
     - destination:
