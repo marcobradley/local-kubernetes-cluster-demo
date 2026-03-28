@@ -12,6 +12,10 @@ spec:
     match:
     - method:
         exact: POST
+    - method:
+        exact: GET
+    - method:
+        exact: OPTIONS
       uri:
         prefix: "/besttimetobyorsellstock"
     route:
