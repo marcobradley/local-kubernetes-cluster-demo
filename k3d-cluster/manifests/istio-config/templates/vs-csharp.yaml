@@ -6,17 +6,10 @@ metadata:
   namespace: {{ .Values.general.namespace }}
 spec:
   hosts:
-    - "*{{ .Values.csharp_api.service.name }}*"
-    - "*{{ .Values.csharp_ui.service.name }}*"
+  - "{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
   http:
   - name: "csharp-api-routes"
     match:
-    - method:
-        exact: GET
-    - method:
-        exact: POST
-    - method:
-        exact: OPTIONS
       uri:
         prefix: "/besttimetobyorsellstock"
     route:
