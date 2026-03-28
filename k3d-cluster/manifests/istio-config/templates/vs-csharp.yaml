@@ -6,14 +6,12 @@ metadata:
   namespace: {{ .Values.csharp_ui.namespace }}
 spec:
   hosts:
-  - "{{ .Values.csharp_api.service.name }}.{{ .Values.csharp_api.namespace }}.svc.cluster.local"
+  - "{{ .Values.csharp_ui.service.name }}.{{ .Values.csharp_ui.namespace }}.svc.cluster.local"
   http:
   - name: "csharp-ui-routes"
     match:
     - method:
         exact: POST
-    - method:
-        exact: GET
     - method:
         exact: OPTIONS
       uri:
@@ -25,6 +23,7 @@ spec:
     corsPolicy:
       allowOrigins:
       - prefix: "http://csharp-ui.localhost"
+      - prefix: "http://csharp-api.localhost"
       - prefix: "http://localhost"
       allowMethods:
       - GET
