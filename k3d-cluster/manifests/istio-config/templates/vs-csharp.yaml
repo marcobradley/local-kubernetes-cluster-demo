@@ -7,6 +7,7 @@ metadata:
 spec:
   hosts:
   - "{{ .Values.csharp_api.service.name }}"
+  - "{{ .Values.csharp_ui.service.name }}"
   http:
   - name: "csharp-api-routes"
     match:
