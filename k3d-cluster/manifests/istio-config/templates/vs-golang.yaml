@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.general.namespace }}
 spec:
   hosts:
-  - "{{ .Values.golang_api.service.name }}"
+  - "{{ .Values.go_api.service.name }}"
   - "{{ .Values.csharp_ui.service.name }}"
   http:
   - name: "golang-api-routes"
@@ -15,12 +15,12 @@ spec:
         prefix: "/quicksort"
     route:
     - destination:
-        host: "{{ .Values.golang_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
+        host: "{{ .Values.go_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
         subset: v1
     corsPolicy:
       allowOrigins:
       - prefix: "http://{{ .Values.csharp_ui.service.name }}.localhost"
-      - prefix: "http://{{ .Values.golang_api.service.name }}.localhost"
+      - prefix: "http://{{ .Values.go_api.service.name }}.localhost"
       - prefix: "http://localhost"
       allowMethods:
       - GET
@@ -33,7 +33,7 @@ metadata:
   name: golang-destinations
   namespace: {{ .Values.general.namespace }}
 spec:
-  host: "{{ .Values.golang_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
+  host: "{{ .Values.go_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local"
   subsets:
   - name: v1
     labels:
