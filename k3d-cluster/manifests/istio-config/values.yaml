@@ -1,0 +1,20 @@
+general:
+  namespace: dev
+csharp_api:
+  name: csharp-api
+  service:
+    name: csharp-api-svc
+    port: 80
+    targetPort: 5113
+csharp_ui:
+  name: csharp-ui
+  service:
+    name: csharp-ui-svc
+    port: 80
+    targetPort: 5113
+go_api:
+  name: golang-api
+  service:
+    name: golang-api-svc
+    port: 80
+    targetPort: 8080

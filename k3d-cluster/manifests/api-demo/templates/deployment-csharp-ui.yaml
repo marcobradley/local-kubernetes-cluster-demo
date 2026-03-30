@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Values.csharp_ui.name }}-deployment"
-  namespace: "{{ .Values.csharp_ui.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
 spec:
   replicas: !!int "{{ .Values.csharp_ui.replicaCount }}"
   selector:
@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: "{{ .Values.csharp_ui.name }}"
+        version: v1
     spec:
       containers:
       - image: "{{ .Values.csharp_ui.image.repository }}:{{ .Values.csharp_ui.image.tag }}"
@@ -20,8 +21,10 @@ spec:
         ports:
         - containerPort: !!int "{{ .Values.csharp_ui.service.targetPort }}"
         env:
-        - name: API_BASE_URL
-          value: "http://{{ .Values.csharp_ui.name }}-ingress:8080"
+        - name: CSHARP_API_BASE_URL
+          value: "http://{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local:{{ .Values.csharp_api.service.port }}"
+        - name: GO_API_BASE_URL
+          value: "http://{{ .Values.go_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local:{{ .Values.go_api.service.port }}"
         resources:
           requests:
             memory: "64Mi"

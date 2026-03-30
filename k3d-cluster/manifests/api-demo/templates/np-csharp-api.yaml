@@ -2,7 +2,7 @@
 # kind: NetworkPolicy
 # metadata:
 #   name: "{{ .Values.csharp_api.name }}-np"
-#   namespace: {{ .Values.csharp_api.namespace }}
+#   namespace: {{ .Values.general.namespace }}
 # spec:
 #   podSelector:
 #     matchLabels:

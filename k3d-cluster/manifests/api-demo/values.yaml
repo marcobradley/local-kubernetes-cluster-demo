@@ -1,6 +1,7 @@
+general:
+  namespace: dev
 go_api:
   name: go-api
-  namespace: dev
   replicaCount: 1
   image:
     repository: 'mbradleyhome/golang-api-demo'
@@ -13,7 +14,6 @@ go_api:
     targetPort: 8080
 csharp_api:
   name: csharp-api
-  namespace: dev
   replicaCount: 1
   image:
     repository: 'mbradleyhome/csharp-api-demo'
@@ -26,7 +26,6 @@ csharp_api:
     targetPort: 5113
 csharp_ui:
   name: csharp-ui
-  namespace: dev
   replicaCount: 1
   image:
     repository: 'mbradleyhome/csharp-ui-demo'
@@ -39,7 +38,6 @@ csharp_ui:
     targetPort: 5113
 ollama_api:
   name: ollama-api
-  namespace: dev
   replicaCount: 1
   image:
     repository: 'mbradleyhome/ollama-api'

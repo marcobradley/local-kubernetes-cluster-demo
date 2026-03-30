@@ -2,7 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: "{{ .Values.csharp_api.service.name }}"
-  namespace: "{{ .Values.csharp_api.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
+  labels:
+    istio.io/use-waypoint: "{{ .Values.csharp_api.service.name }}-svc-waypoint"
 spec:
   ports:
   - name: http

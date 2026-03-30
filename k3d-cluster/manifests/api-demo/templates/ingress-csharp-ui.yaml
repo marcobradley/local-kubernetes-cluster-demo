@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Values.csharp_ui.name }}-ingress"
-  namespace: "{{ .Values.csharp_ui.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -18,10 +18,3 @@ spec:
                 name: "{{ .Values.csharp_ui.service.name }}"
                 port:
                   number: !!int "{{ .Values.csharp_ui.service.port }}"
-          - path: /besttimetobyorsellstock
-            pathType: Prefix
-            backend:
-              service:
-                name: "{{ .Values.csharp_api.service.name }}"
-                port:
-                  number: !!int "{{ .Values.csharp_api.service.port }}"

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: "{{ .Values.go_api.service.name }}"
-  namespace: "{{ .Values.go_api.namespace }}"
+  namespace: "{{ .Values.general.namespace }}"
 spec:
   ports:
   - name: http

@@ -13,11 +13,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: go-api-pod-reader-binding
-  namespace: {{ .Values.go_api.namespace }}
+  namespace: {{ .Values.general.namespace }}
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: {{ .Values.go_api.namespace }}
+  namespace: {{ .Values.general.namespace }}
 roleRef:
   kind: Role
   name: go-api-pod-reader
