@@ -12,3 +12,9 @@ csharp_ui:
     name: csharp-ui-svc
     port: 80
     targetPort: 5113
+golang_api:
+  name: golang-api
+  service:
+    name: golang-api-svc
+    port: 80
+    targetPort: 8080
