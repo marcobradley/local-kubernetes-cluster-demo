@@ -23,7 +23,7 @@ spec:
         env:
         - name: CSHARP_API_BASE_URL
           value: "http://{{ .Values.csharp_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local:{{ .Values.csharp_api.service.port }}"
-        - name: GOLANG_API_BASE_URL
+        - name: GO_API_BASE_URL
           value: "http://{{ .Values.go_api.service.name }}.{{ .Values.general.namespace }}.svc.cluster.local:{{ .Values.go_api.service.port }}"
         resources:
           requests:
