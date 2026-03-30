@@ -1,4 +1,4 @@
-# Restore guide (k3d + k3s sqlite)
+# Restore guide (k3d + k3s sqlite) 
 
 This runbook restores a local `k3d` cluster that uses k3s sqlite datastore (single-server setup).
 
