@@ -1,33 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Values.csharp_api.service.name }}"
+  name: "{{ .Values.python_flask_ui.service.name }}"
   namespace: "{{ .Values.general.namespace }}"
   labels:
     istio.io/use-waypoint: "waypoint-{{ .Values.general.namespace }}"
 spec:
   ports:
   - name: http
-    port: !!int "{{ .Values.csharp_api.service.port }}"
+    port: !!int "{{ .Values.python_flask_ui.service.port }}"
     protocol: TCP
-    targetPort: !!int "{{ .Values.csharp_api.service.targetPort }}"
+    targetPort: !!int "{{ .Values.python_flask_ui.service.targetPort }}"
   selector:
-    app: "{{ .Values.csharp_api.name }}"
+    app: "{{ .Values.python_flask_ui.name }}"
 status:
   loadBalancer: {}
 ---
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: "{{ .Values.csharp_api.service.name }}-allow"
+  name: "{{ .Values.python_flask_ui.service.name }}-allow"
   namespace: "{{ .Values.general.namespace }}"
 spec:
   selector:
     matchLabels:
-      app: "{{ .Values.csharp_api.name }}"
+      app: "{{ .Values.python_flask_ui.name }}"
   action: ALLOW
   rules:
   - to:
     - operation:
         ports:
-        - "{{ .Values.csharp_api.service.port }}"
+        - "{{ .Values.python_flask_ui.service.port }}"

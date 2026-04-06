@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Values.csharp_ui.service.name }}"
   namespace: "{{ .Values.general.namespace }}"
   labels:
-    istio.io/use-waypoint: "{{ .Values.csharp_ui.service.name }}-svc-waypoint"
+    istio.io/use-waypoint: "waypoint-{{ .Values.general.namespace }}"
 spec:
   ports:
   - name: http
@@ -15,3 +15,19 @@ spec:
     app: "{{ .Values.csharp_ui.name }}"
 status:
   loadBalancer: {}
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: "{{ .Values.csharp_ui.service.name }}-allow"
+  namespace: "{{ .Values.general.namespace }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Values.csharp_ui.name }}"
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        ports:
+        - "{{ .Values.csharp_ui.service.port }}"

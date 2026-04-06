@@ -14,6 +14,11 @@ spec:
       labels:
         app: "{{ .Values.go_api.name }}"
     spec:
+      serviceAccountName: "{{ .Values.go_api.name }}-sa"
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: "{{ .Values.go_api.image.repository }}:{{ .Values.go_api.image.tag }}"
         name: "{{ .Values.go_api.name }}"
@@ -26,3 +31,6 @@ spec:
           limits:
             memory: "64Mi"
             cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true

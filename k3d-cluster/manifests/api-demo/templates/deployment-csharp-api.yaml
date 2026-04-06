@@ -15,6 +15,11 @@ spec:
         app: "{{ .Values.csharp_api.name }}"
         version: v1
     spec:
+      serviceAccountName: "{{ .Values.csharp_api.name }}-sa"
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: "{{ .Values.csharp_api.image.repository }}:{{ .Values.csharp_api.image.tag }}"
         name: "{{ .Values.csharp_api.name }}"
@@ -27,3 +32,6 @@ spec:
           limits:
             memory: "64Mi"
             cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
