@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Values.python_flask_ui.name }}-ingress"
+  namespace: "{{ .Values.general.namespace }}"
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: "{{ .Values.python_flask_ui.name }}.localhost"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .Values.python_flask_ui.service.name }}"
+                port:
+                  number: !!int "{{ .Values.python_flask_ui.service.port }}"

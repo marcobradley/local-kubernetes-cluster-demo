@@ -36,6 +36,18 @@ csharp_ui:
     type: ClusterIP
     port: 80
     targetPort: 5113
+python_flask_ui:
+  name: python-flask-ui
+  replicaCount: 1
+  image:
+    repository: 'mbradleyhome/python-flask-demo'
+    tag: 'latest'
+    pullPolicy: IfNotPresent
+  service:
+    name: python-flask-ui-svc
+    type: ClusterIP
+    port: 80
+    targetPort: 5000
 ollama_api:
   name: ollama-api
   replicaCount: 1
