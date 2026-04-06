@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.4...v0.0.0-development) (2026-04-06)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.5...v0.0.0-development) (2026-04-06)
 
 ### ⚠ BREAKING CHANGES
 
@@ -227,6 +227,7 @@
 * update README and rename kind config file ([159fe0e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/159fe0ec4b62d90aea2ce74ed72a8652c965638d))
 * update service type to nodeport ([73e59a9](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/73e59a9a03602b5cb4772903e6f477c20d7b3876))
 * update the helm structure ([2716694](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/27166945538f22f062687c85a8f8879e70ce1cf4))
+* update the ports and serviceaccounts ([c10087a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c10087aebaf3d03aa8ada05068a9f2a970d694f5))
 * updated api helm chart ([878b12c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/878b12cb27eec29c8e86bb1534de22d22e1aaa2c))
 * updated Auth Policy to allow from traffic ([181d50d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/181d50dbbce20f5c128a3c9815528b481139a70c))
 * updated bootstrap to make the dependency secret ([cdd89c6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cdd89c65e87033b19c55c169680cfd15218bc925))
