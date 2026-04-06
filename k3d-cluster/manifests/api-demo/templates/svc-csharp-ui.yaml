@@ -27,7 +27,11 @@ spec:
       app: "{{ .Values.csharp_ui.name }}"
   action: ALLOW
   rules:
-  - to:
+  - from:
+    - source:
+        namespaces:
+        - kube-system
+    to:
     - operation:
         ports:
         - "{{ .Values.csharp_ui.service.port }}"
