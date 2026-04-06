@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: "{{ .Values.go_api.service.name }}"
   namespace: "{{ .Values.general.namespace }}"
+  labels:
+    istio.io/use-waypoint: "waypoint-{{ .Values.general.namespace }}"
 spec:
   ports:
   - name: http

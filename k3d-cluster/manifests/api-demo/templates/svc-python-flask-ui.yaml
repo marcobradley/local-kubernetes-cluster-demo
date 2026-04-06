@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Values.python_flask_ui.service.name }}"
   namespace: "{{ .Values.general.namespace }}"
   labels:
-    istio.io/use-waypoint: "{{ .Values.python_flask_ui.service.name }}-svc-waypoint"
+    istio.io/use-waypoint: "waypoint-{{ .Values.general.namespace }}"
 spec:
   ports:
   - name: http
