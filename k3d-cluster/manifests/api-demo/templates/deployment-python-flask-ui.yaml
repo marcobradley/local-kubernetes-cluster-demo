@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: "{{ .Values.python_flask_ui.name }}-sa"
       securityContext:
-        runAsNonRoot: true
+        runAsNonRoot: false
         seccompProfile:
           type: RuntimeDefault
       containers:

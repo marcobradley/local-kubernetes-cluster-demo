@@ -16,7 +16,7 @@ spec:
     spec:
       serviceAccountName: "{{ .Values.ollama_api.name }}-sa"
       securityContext:
-        runAsNonRoot: true
+        runAsNonRoot: false
         seccompProfile:
           type: RuntimeDefault
       containers:
