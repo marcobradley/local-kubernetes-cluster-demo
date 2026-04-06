@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.0...v0.0.0-development) (2026-04-06)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.1...v0.0.0-development) (2026-04-06)
 
 ### ⚠ BREAKING CHANGES
 
@@ -215,6 +215,7 @@
 * reworking the logic for argocd-core ([b4a29e2](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b4a29e233b0a82efcd6d1dd576fe0ac6136c85f6))
 * set gateway type to NodePort and point to the port 30000 ([2db61a0](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2db61a016f9c97bdc8ab1adee428e254711f1ee3))
 * set monitoring to use the v4 major version ([7cd697e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7cd697ec57bfe749b98c4ace404884cb8164b710))
+* set runAsNonRoot to false until pods have non root users ([befa8ab](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/befa8aba782829799f9492164b345f651f627d85))
 * set the version to the major version v4 ([bb75bb6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb75bb612dd5a421b6555b57a044577da9f6386f))
 * set up the templates correctly ([1c69883](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1c698836c89b01449cd6f9c4372df24435318bfb))
 * update action ([9a6b369](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9a6b369d1cb6cd6cc1a51c93513459df320ad4fe))
