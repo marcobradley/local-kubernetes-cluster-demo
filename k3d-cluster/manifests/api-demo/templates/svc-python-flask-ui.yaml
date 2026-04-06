@@ -35,3 +35,4 @@ spec:
     - operation:
         ports:
         - "{{ .Values.python_flask_ui.service.port }}"
+        - "{{ .Values.python_flask_ui.service.targetPort }}"

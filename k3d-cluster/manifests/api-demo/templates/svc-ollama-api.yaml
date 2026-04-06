@@ -35,3 +35,4 @@ spec:
     - operation:
         ports:
         - "{{ .Values.ollama_api.service.port }}"
+        - "{{ .Values.ollama_api.service.targetPort }}"
