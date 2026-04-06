@@ -14,6 +14,10 @@ spec:
       labels:
         app: "{{ .Values.ollama_api.name }}"
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: "{{ .Values.ollama_api.image.repository }}:{{ .Values.ollama_api.image.tag }}"
         name: "{{ .Values.ollama_api.name }}"
@@ -26,3 +30,6 @@ spec:
           limits:
             memory: "64Mi"
             cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true

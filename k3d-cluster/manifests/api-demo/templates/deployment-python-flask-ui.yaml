@@ -15,6 +15,10 @@ spec:
         app: "{{ .Values.python_flask_ui.name }}"
         version: v1
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: "{{ .Values.python_flask_ui.image.repository }}:{{ .Values.python_flask_ui.image.tag }}"
         name: "{{ .Values.python_flask_ui.name }}"
@@ -32,3 +36,6 @@ spec:
           limits:
             memory: "64Mi"
             cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true

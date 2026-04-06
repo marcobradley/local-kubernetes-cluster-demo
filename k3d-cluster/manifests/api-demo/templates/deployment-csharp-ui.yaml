@@ -15,6 +15,10 @@ spec:
         app: "{{ .Values.csharp_ui.name }}"
         version: v1
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: "{{ .Values.csharp_ui.image.repository }}:{{ .Values.csharp_ui.image.tag }}"
         name: "{{ .Values.csharp_ui.name }}"
@@ -32,3 +36,6 @@ spec:
           limits:
             memory: "64Mi"
             cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
