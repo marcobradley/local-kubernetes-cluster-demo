@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.5...v0.0.0-development) (2026-04-06)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.6...v0.0.0-development) (2026-04-06)
 
 ### ⚠ BREAKING CHANGES
 
@@ -202,6 +202,7 @@
 * reduce resources needed for the pods ([0f9f3a6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0f9f3a63a36ce77c8d53a5ab42ff24b0f73e06b9))
 * reducing the resource requirements for istio and grafana ([0b06e8a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0b06e8a017ae2badc443d37464b362fb4db576a1))
 * remove localhost rule from argocd ingress to avoid route conflicts ([b181936](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b18193606d1d2455e388b5ca8c8263c25ce43973))
+* removed auth since kube system is not in mesh ([4ce5ad5](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/4ce5ad5e965e3d2276e657ba6fb4af4fb1cf5026))
 * removed env variable ([a61a7a1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a61a7a1413278d487549e4af803598f496b66f28))
 * Removed extra ArgoCD application sources ([30aa6b7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/30aa6b7f38a3857d46d6f71a705d0eabba387937))
 * removed incorrect ambient labeling ([44ea69b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/44ea69bf0a739f202463fe306fe7cf96b344695b))
