@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.2.0...v0.0.0-development) (2026-04-06)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.0...v0.0.0-development) (2026-04-06)
 
 ### ⚠ BREAKING CHANGES
 
@@ -44,6 +44,7 @@
 
 * add ingress for go api ([fed7ce5](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/fed7ce5a895f71de8e684f170f132a10c9f79b7e))
 * adding allowedOrigin ([b784c76](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/b784c769b1e6d9a986789bef2b843163d083f5dd))
+* adding authorization policies for istio ([e23d60a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/e23d60a4b1297fd77e541b1cf3a01e44f80db9e8))
 * adding back destiation ([f85dad4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f85dad409a00336f921dc66fb22f811608458261))
 * adding back wildcard ([6954846](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6954846f19fbe37c72fe26a48e759c516b6ca615))
 * adding csharp ui container ([7de97cf](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7de97cfbfab964b7976d1af662c0238a18cbebc3))
@@ -61,15 +62,18 @@
 * adding new apis for csharp and ollama ([a628656](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a628656579579ff354a4f271d2a05c074d066145))
 * adding OAuth support ([3f86511](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3f86511a7a0bf1514e6a1b18d822d1582d96fcc3))
 * adding proxy for gateway ([c70d4c8](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c70d4c847c1ed430434a85816f2e3ab7a41622be))
+* adding python flask UI ([55a7cb4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/55a7cb47fe1eb55b682fc29355837e2ada2adb76))
 * adding quicksort golang api routes ([a9801eb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a9801eb9b03f4da4bf5e3a50e8f0586902a2d2c5))
 * adding rbac ([8ca781b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/8ca781b80f2fe951ff033f354b784d782875b7cf))
 * adding the virtual route ([d74df28](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/d74df282bd3a75ab0a1cf3a8ba48eabe564662dc))
 * adding v1 label to service ([60da5e9](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/60da5e9a623c678813ea8dfaa81d082dbeb6dcee))
 * adding values-dev ([c4d0abb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c4d0abb8a2f93493e316ed50cd40d8251d680dd9))
 * adding version to ui pods adding istio waypoint gateway ([724372a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/724372ac086a6fa1fc9ce00bf72eb7020e418d59))
+* adding waypoint to ollama service ([3620647](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3620647944b89a55b06bca4602ae1d2ace12d7d3))
 * broke out argocd into core and app ([0028d16](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0028d16d5d1d2485f64f9b0eac8551589a717e62))
 * changed to prefix ([f7cdcf4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f7cdcf467ee8f3bcac262f1e498076a7eda789af))
 * changed to regex ([ba8a191](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ba8a191bf74fdadd66518d96e28699cff4ca6b27))
+* cleaning up service accounts and removing unused roles ([a4bc54e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a4bc54e85d7e3f793efa250f279baeab1e7ba25b))
 * creating k3d cluster ([1e4699a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1e4699ac52b09f195c0ce40e53515f00ff3f967a))
 * default to all hosts in dev namespace ([7c282ee](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7c282ee661a647ceaaee854c395edf0bf707a86e))
 * expose deployment ([139fd52](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/139fd52f652a241ecd3fdc5bb8efc6db9f75eedd))
@@ -84,6 +88,7 @@
 * fixed missing - ([3ce6291](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3ce62916de1f5c59aaa50e75fb93905c5e8831a6))
 * fixed missing file extention ([5af96b4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5af96b43382c0564b4763a1a288077f95fe2c56f))
 * fixed missing update ([a3a545a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a3a545a0187a07950d1b3b2db0028048deba9773))
+* fixed service account for csharp-api ([3b7ffe2](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3b7ffe2913caac420f0f8441881b1ad06c1f0fde))
 * fixed syntax ([9978dc3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9978dc3aa2f2c1fc00d820f9d165d87b749d2a0e))
 * fixed syntax ([06f371f](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/06f371fdab4d1776fc6789efc70e0e177dd1a22e))
 * fixed syntax errors ([51367e9](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/51367e929cc0bc6bcac6babc7cfc16e36c700246))
@@ -107,6 +112,7 @@
 * removing methods ([6b10031](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6b1003141194f8087e31ed71882f1aadc41faefc))
 * renamed docker cluster to kind-cluster and updated the pull-request.yaml ([0b82d9a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0b82d9a2fbfe687db47ffaf5e0c396c93a052bb2))
 * renamed the argocd app ([93d8f94](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/93d8f94da2047cb36ef558b047f531faa3a2a333))
+* renamed the roles to sa for service account ([d64de2c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/d64de2c6b5e53c223573c280a3fd3bf0e9991a77))
 * renames the docker-desktop-cluster to kind-cluster ([a2b98d7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a2b98d703468f5a6388d81722089007a9dc96a70))
 * reomving the path in the ui ingress ([a15603c](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a15603c6576812065af187fd0a3e864f19085f87))
 * resetting version tag ([135d54d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/135d54d818326845250b48356eb1b7016f1f5c23))
@@ -128,6 +134,7 @@
 * update route version ([d6488eb](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/d6488ebe4660396d6a7b7085bb22d78b16e3890a))
 * update target versions ([18b855e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/18b855ecbcc53025db9ae7a029c2b19221db277a))
 * update virual service ([68a8b40](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/68a8b40bf43650ee761cfdd4ed502b0bf01b3cf8))
+* update waypoint used by services ([a31d4ee](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a31d4ee3c6bd19cf7f7f7102ca24f3f3f2ab8653))
 * updated app name ([5ca3b3d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5ca3b3d748e05a05620437878b1b2aed226a1cdf))
 * updated CORS options ([ce10cea](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ce10ceab813bba203cdca76d2df6b7fb5fec5860))
 * updated corsPolicy ([20c259d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/20c259db3d5ce00a41d24a934000ceec9a81ff7d))
@@ -144,6 +151,8 @@
 * updated the virtual service ([6e58ec6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/6e58ec671bbb364d811fafaf4265022400141ab7))
 * updated to point at the api service ([fc6a659](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/fc6a659449d079325e5dc4ed09ac1ed3c300c978))
 * updating env variable ([87c4ccd](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/87c4ccd973895a39a8ced44e603579cd448b1ece))
+* updating the pod versions and RBAC ([094cb06](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/094cb06a64d9c4a3eaa8447a4bba25b6edc34f21))
+* updating the security contexts for the deployments ([9075549](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9075549a92cee7083efa3e01df7ce86c45d5155b))
 * yaml syntax fix ([9c351df](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9c351dfe907b84c05cbcf9d9915a88766270c55a))
 
 ### Bug Fixes
