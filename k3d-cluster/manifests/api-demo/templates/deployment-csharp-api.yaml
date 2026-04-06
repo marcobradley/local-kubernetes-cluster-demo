@@ -4,7 +4,6 @@ metadata:
   name: "{{ .Values.csharp_api.name }}-deployment"
   namespace: "{{ .Values.general.namespace }}"
 spec:
-  serviceAccountName: "{{ .Values.csharp_api.name }}-sa"
   replicas: !!int "{{ .Values.csharp_api.replicaCount }}"
   selector:
     matchLabels:
@@ -16,6 +15,7 @@ spec:
         app: "{{ .Values.csharp_api.name }}"
         version: v1
     spec:
+      serviceAccountName: "{{ .Values.csharp_api.name }}-sa"
       securityContext:
         runAsNonRoot: true
         seccompProfile:
