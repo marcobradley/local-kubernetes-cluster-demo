@@ -15,26 +15,3 @@ spec:
     app: "{{ .Values.csharp_ui.name }}"
 status:
   loadBalancer: {}
----
-apiVersion: security.istio.io/v1
-kind: AuthorizationPolicy
-metadata:
-  name: "{{ .Values.csharp_ui.service.name }}-allow"
-  namespace: "{{ .Values.general.namespace }}"
-spec:
-  selector:
-    matchLabels:
-      app: "{{ .Values.csharp_ui.name }}"
-  action: ALLOW
-  rules:
-  - from:
-    - source:
-        serviceAccounts:
-        - "kube-system/traefik"
-        - "{{ .Values.general.namespace }}/csharp-ui"
-        - "{{ .Values.general.namespace }}/python-flask-ui"
-    to:
-    - operation:
-        ports:
-        - "{{ .Values.csharp_ui.service.port }}"
-        - "{{ .Values.csharp_ui.service.targetPort }}"
