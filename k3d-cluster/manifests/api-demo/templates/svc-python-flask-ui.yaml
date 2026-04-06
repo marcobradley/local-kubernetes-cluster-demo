@@ -15,24 +15,3 @@ spec:
     app: "{{ .Values.python_flask_ui.name }}"
 status:
   loadBalancer: {}
----
-apiVersion: security.istio.io/v1
-kind: AuthorizationPolicy
-metadata:
-  name: "{{ .Values.python_flask_ui.service.name }}-allow"
-  namespace: "{{ .Values.general.namespace }}"
-spec:
-  selector:
-    matchLabels:
-      app: "{{ .Values.python_flask_ui.name }}"
-  action: ALLOW
-  rules:
-  - from:
-    - source:
-        namespaces:
-        - kube-system
-  - to:
-    - operation:
-        ports:
-        - "{{ .Values.python_flask_ui.service.port }}"
-        - "{{ .Values.python_flask_ui.service.targetPort }}"
