@@ -38,7 +38,7 @@ csharp_ui:
     targetPort: 5113
 python_flask_ui:
   name: python-flask-ui
-  replicaCount: 1
+  replicaCount: 0
   image:
     repository: 'mbradleyhome/python-flask-demo'
     tag: 'v1'
