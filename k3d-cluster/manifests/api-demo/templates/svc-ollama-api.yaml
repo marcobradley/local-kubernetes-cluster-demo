@@ -13,3 +13,19 @@ spec:
     app: "{{ .Values.ollama_api.name }}"
 status:
   loadBalancer: {}
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: "{{ .Values.ollama_api.service.name }}-allow"
+  namespace: "{{ .Values.general.namespace }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Values.ollama_api.name }}"
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        ports:
+        - "{{ .Values.ollama_api.service.port }}"

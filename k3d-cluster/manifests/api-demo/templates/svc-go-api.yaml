@@ -13,3 +13,19 @@ spec:
     app: "{{ .Values.go_api.name }}"
 status:
   loadBalancer: {}
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: "{{ .Values.go_api.service.name }}-allow"
+  namespace: "{{ .Values.general.namespace }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Values.go_api.name }}"
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        ports:
+        - "{{ .Values.go_api.service.port }}"
