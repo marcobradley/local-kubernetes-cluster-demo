@@ -27,7 +27,14 @@ spec:
       app: "{{ .Values.csharp_api.name }}"
   action: ALLOW
   rules:
+  - from:
+    - source:
+        serviceAccounts:
+        - "kube-system/traefik"
+        - "{{ .Values.general.namespace }}/csharp-ui"
+        - "{{ .Values.general.namespace }}/python-flask-ui"
   - to:
     - operation:
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
         ports:
         - "{{ .Values.csharp_api.service.port }}"

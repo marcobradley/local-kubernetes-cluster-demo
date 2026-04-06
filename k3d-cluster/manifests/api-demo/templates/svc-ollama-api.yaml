@@ -27,6 +27,10 @@ spec:
       app: "{{ .Values.ollama_api.name }}"
   action: ALLOW
   rules:
+  - from:
+    - source:
+        namespaces:
+        - kube-system
   - to:
     - operation:
         ports:
