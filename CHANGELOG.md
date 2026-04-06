@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.1...v0.0.0-development) (2026-04-06)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.2...v0.0.0-development) (2026-04-06)
 
 ### ⚠ BREAKING CHANGES
 
@@ -218,6 +218,7 @@
 * set runAsNonRoot to false until pods have non root users ([befa8ab](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/befa8aba782829799f9492164b345f651f627d85))
 * set the version to the major version v4 ([bb75bb6](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bb75bb612dd5a421b6555b57a044577da9f6386f))
 * set up the templates correctly ([1c69883](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1c698836c89b01449cd6f9c4372df24435318bfb))
+* turned off python deployment ([057b66a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/057b66aa6755d98fe507463b52d223ab728a4ddc))
 * update action ([9a6b369](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9a6b369d1cb6cd6cc1a51c93513459df320ad4fe))
 * update API base url ([941effc](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/941effc3bd426bf2840492f77fc94cef46112654))
 * update app to autofind files under directory ([37d0968](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/37d0968d6b7ae33050cd89b3e687371bd6ba310e))
