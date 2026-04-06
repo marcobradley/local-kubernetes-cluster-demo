@@ -37,3 +37,4 @@ spec:
     - operation:
         ports:
         - "{{ .Values.go_api.service.port }}"
+        - "{{ .Values.go_api.service.targetPort }}"

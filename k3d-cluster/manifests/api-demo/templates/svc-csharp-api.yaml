@@ -38,3 +38,4 @@ spec:
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
         ports:
         - "{{ .Values.csharp_api.service.port }}"
+        - "{{ .Values.csharp_api.service.targetPort }}"

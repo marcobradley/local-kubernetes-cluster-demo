@@ -29,9 +29,12 @@ spec:
   rules:
   - from:
     - source:
-        namespaces:
-        - kube-system
+        serviceAccounts:
+        - "kube-system/traefik"
+        - "{{ .Values.general.namespace }}/csharp-ui"
+        - "{{ .Values.general.namespace }}/python-flask-ui"
     to:
     - operation:
         ports:
         - "{{ .Values.csharp_ui.service.port }}"
+        - "{{ .Values.csharp_ui.service.targetPort }}"
