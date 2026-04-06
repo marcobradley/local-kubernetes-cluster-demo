@@ -5,7 +5,7 @@ go_api:
   replicaCount: 1
   image:
     repository: 'mbradleyhome/golang-api-demo'
-    tag: 'latest'
+    tag: 'v2'
     pullPolicy: IfNotPresent
   service:
     name: go-api-svc
@@ -17,7 +17,7 @@ csharp_api:
   replicaCount: 1
   image:
     repository: 'mbradleyhome/csharp-api-demo'
-    tag: 'latest'
+    tag: 'v3'
     pullPolicy: IfNotPresent
   service:
     name: csharp-api-svc
@@ -29,7 +29,7 @@ csharp_ui:
   replicaCount: 1
   image:
     repository: 'mbradleyhome/csharp-ui-demo'
-    tag: 'latest'
+    tag: 'v1'
     pullPolicy: IfNotPresent
   service:
     name: csharp-ui-svc
@@ -41,7 +41,7 @@ python_flask_ui:
   replicaCount: 1
   image:
     repository: 'mbradleyhome/python-flask-demo'
-    tag: 'latest'
+    tag: 'v1'
     pullPolicy: IfNotPresent
   service:
     name: python-flask-ui-svc
@@ -53,7 +53,7 @@ ollama_api:
   replicaCount: 1
   image:
     repository: 'mbradleyhome/ollama-api'
-    tag: 'latest'
+    tag: 'v1'
     pullPolicy: IfNotPresent
   service:
     name: ollama-api-svc
