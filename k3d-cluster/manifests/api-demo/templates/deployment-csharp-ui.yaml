@@ -15,6 +15,7 @@ spec:
         app: "{{ .Values.csharp_ui.name }}"
         version: v1
     spec:
+      serviceAccountName: "{{ .Values.csharp_ui.name }}-sa"
       securityContext:
         runAsNonRoot: true
         seccompProfile:

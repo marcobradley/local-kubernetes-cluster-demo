@@ -15,6 +15,7 @@ spec:
         app: "{{ .Values.python_flask_ui.name }}"
         version: v1
     spec:
+      serviceAccountName: "{{ .Values.python_flask_ui.name }}-sa"
       securityContext:
         runAsNonRoot: true
         seccompProfile:
