@@ -6,7 +6,7 @@ go_api:
   image:
     repository: 'mbradleyhome/golang-api-demo'
     tag: 'v2'
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   service:
     name: go-api-svc
     type: ClusterIP
@@ -18,7 +18,7 @@ csharp_api:
   image:
     repository: 'mbradleyhome/csharp-api-demo'
     tag: 'v3'
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   service:
     name: csharp-api-svc
     type: ClusterIP
@@ -30,7 +30,7 @@ csharp_ui:
   image:
     repository: 'mbradleyhome/csharp-ui-demo'
     tag: 'v1'
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   service:
     name: csharp-ui-svc
     type: ClusterIP
@@ -42,7 +42,7 @@ python_flask_ui:
   image:
     repository: 'mbradleyhome/python-flask-demo'
     tag: 'v1'
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   service:
     name: python-flask-ui-svc
     type: ClusterIP
@@ -54,7 +54,7 @@ ollama_api:
   image:
     repository: 'mbradleyhome/ollama-api'
     tag: 'v1'
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   service:
     name: ollama-api-svc
     type: ClusterIP

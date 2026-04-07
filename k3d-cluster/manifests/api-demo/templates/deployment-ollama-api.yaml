@@ -21,6 +21,7 @@ spec:
           type: RuntimeDefault
       containers:
       - image: "{{ .Values.ollama_api.image.repository }}:{{ .Values.ollama_api.image.tag }}"
+        imagePullPolicy: "{{ .Values.ollama_api.image.pullPolicy }}"
         name: "{{ .Values.ollama_api.name }}"
         ports:
         - containerPort: !!int "{{ .Values.ollama_api.service.targetPort }}"
