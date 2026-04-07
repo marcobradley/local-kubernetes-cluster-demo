@@ -21,6 +21,7 @@ spec:
           type: RuntimeDefault
       containers:
       - image: "{{ .Values.go_api.image.repository }}:{{ .Values.go_api.image.tag }}"
+        imagePullPolicy: "{{ .Values.go_api.image.pullPolicy }}"
         name: "{{ .Values.go_api.name }}"
         ports:
         - containerPort: !!int "{{ .Values.go_api.service.targetPort }}"

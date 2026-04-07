@@ -22,6 +22,7 @@ spec:
           type: RuntimeDefault
       containers:
       - image: "{{ .Values.csharp_api.image.repository }}:{{ .Values.csharp_api.image.tag }}"
+        imagePullPolicy: "{{ .Values.csharp_api.image.pullPolicy }}"
         name: "{{ .Values.csharp_api.name }}"
         ports:
         - containerPort: !!int "{{ .Values.csharp_api.service.targetPort }}"

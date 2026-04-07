@@ -22,6 +22,7 @@ spec:
           type: RuntimeDefault
       containers:
       - image: "{{ .Values.python_flask_ui.image.repository }}:{{ .Values.python_flask_ui.image.tag }}"
+        imagePullPolicy: "{{ .Values.python_flask_ui.image.pullPolicy }}"
         name: "{{ .Values.python_flask_ui.name }}"
         ports:
         - containerPort: !!int "{{ .Values.python_flask_ui.service.targetPort }}"
