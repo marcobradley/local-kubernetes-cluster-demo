@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.6...v0.0.0-development) (2026-04-07)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.7...v0.0.0-development) (2026-04-08)
 
 ### ⚠ BREAKING CHANGES
 
@@ -208,6 +208,7 @@
 * removed incorrect ambient labeling ([44ea69b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/44ea69bf0a739f202463fe306fe7cf96b344695b))
 * removed nodejs ([1a88ce3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/1a88ce3303154bf8034166a32f4e74d1fb6ac846))
 * removed org for local ([f59c970](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/f59c97079e9dcc4ab9a0d62b87735e9a3423f495))
+* removed overly restrictive context ([5657f23](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5657f23ebcd34473857c91c73c18688ada842f7c))
 * removed tls requirement for local prometheus operator ([279ee22](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/279ee22076cafec32590865d48646939ec9cdc4e))
 * removed unused template ([40ab598](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/40ab598e6c17f66838e7269e7fe999e22fb02492))
 * removing env variable to default to the UI service ([e4826ed](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/e4826ed77fcf1a8c34000dcd6f0736f8d26d0509))
