@@ -27,7 +27,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 5000
+            port: !!int "{{ .Values.python_flask_ui.service.targetPort }}"
           initialDelaySeconds: 6
           periodSeconds: 6
         ports:
