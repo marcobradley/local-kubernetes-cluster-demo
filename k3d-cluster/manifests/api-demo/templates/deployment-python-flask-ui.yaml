@@ -24,6 +24,12 @@ spec:
       - image: "{{ .Values.python_flask_ui.image.repository }}:{{ .Values.python_flask_ui.image.tag }}"
         imagePullPolicy: "{{ .Values.python_flask_ui.image.pullPolicy }}"
         name: "{{ .Values.python_flask_ui.name }}"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: !!int "{{ .Values.python_flask_ui.service.targetPort }}"
+          initialDelaySeconds: 6
+          periodSeconds: 6
         ports:
         - containerPort: !!int "{{ .Values.python_flask_ui.service.targetPort }}"
         env:
