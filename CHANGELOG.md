@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.4.0...v0.0.0-development) (2026-04-08)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.4.1...v0.0.0-development) (2026-04-08)
 
 ### ⚠ BREAKING CHANGES
 
@@ -174,6 +174,7 @@
 * Apply suggestions from code review ([3cc6c50](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3cc6c50ff079281bab1300fd36df09260dfba247))
 * Apply suggestions from code review ([e54d1c7](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/e54d1c7d67b0ad0526007777466765eac65c4a76))
 * Change token for changelog pull request action ([0751f0d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0751f0d2f67c2eabe9466efaf1996df7d2285ef6))
+* correct health check ([bc37eff](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/bc37effb9ea2a3c4f1b05fc622f13958d0518505))
 * correct the helm values location ([168014e](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/168014e55b938ea26203e25196548d9c7c6879fa))
 * corrected NS of the route and updated the gateway to accept traffic ([ce585a4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ce585a436e57ad92ab03dceab7b530a7183bee31))
 * corrected revision number ([ded1282](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ded128270acf8546e79d579e65d09fade954d608))
@@ -186,6 +187,7 @@
 * correcting syntax ([ee93e0a](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/ee93e0a83006c1eb9c91b9500b543a0a53c393a1))
 * correcting the helm structure ([a5e458b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/a5e458b909fa15f23acdff3bce1376f3d7287e89))
 * created a single setup script for argocd ([4c45cde](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/4c45cdeb5a4d8365f8b0f9a1cd742432fd4057a9))
+* fix delay ([15e4d10](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/15e4d103c6886772b243907994462ce6df1ae61a))
 * Fix UTF-8 encoding issue in deployment-go-api.yaml ([3b07814](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3b078143775800d2394d23eceb0530f42917676d))
 * fixed meta-data for app ([47137ac](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/47137ac30b61e32184330a9a7fcece0ae504bb27))
 * fixed path ([317bf34](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/317bf34c0a75a8aebe781d52592fbe7a53f96b26))
