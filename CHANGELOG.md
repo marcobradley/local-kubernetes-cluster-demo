@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.3.7...v0.0.0-development) (2026-04-08)
+## [0.0.0-development](https://github.com/marcobradley/local-kubernetes-cluster-demo/compare/v4.4.0...v0.0.0-development) (2026-04-08)
 
 ### ⚠ BREAKING CHANGES
 
@@ -52,6 +52,7 @@
 * Adding envoy gateway ([5e24ebc](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/5e24ebc9f8d472f64122d9acc75745f280e89ce0))
 * adding envoy proxy gateway settings ([c958c40](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c958c40e713343a7da0021ec2197cf728073b1ba))
 * adding go svc ([0d3fa7d](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0d3fa7db6a4c1ccdebf39c1a9227b6f4b8dccd73))
+* adding health check for the python deployment ([cbf9511](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/cbf9511a652437985bdb2db4b4cc6ce037263d92))
 * adding istio ambient mode ([2d3694b](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/2d3694b61189c984228c9bba755ec8612a1d2074))
 * adding istio routes for csharp demo ([be15938](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/be1593805968e52a082640f23f8f29ca8e8607f1))
 * adding istio waypoint proxy ([233f038](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/233f038c86ba2d825a0ec42a01e4f1d01e84841c))
@@ -119,6 +120,7 @@
 * reworking the cluster gateway ([23f29c3](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/23f29c363254df517c24756b68f227d7a1c1d2f8))
 * separated out the values from the app config ([0608ee1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/0608ee1da204f1cbc79153842d72919e2ab3b00a))
 * set api url to the ui service ([c6bc3e5](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/c6bc3e5ceac85bd9566ad15169854e1c7696c12a))
+* set the port using values ([7aa3fc4](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/7aa3fc44391a7901dc75553dc6f2db3f498c213e))
 * syntax fix ([3943386](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/3943386c5f70a11000343e1f3a503e8fda88b695))
 * syntax fix ([9b56052](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/9b560525e1e611dbf2a18f2c4f25f0b159f845a9))
 * testing adding hosts ([27f61b1](https://github.com/marcobradley/local-kubernetes-cluster-demo/commit/27f61b14e82392ea1d13f264ca9c7b67dc514951))
