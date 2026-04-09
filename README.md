@@ -226,7 +226,7 @@ kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-base.yaml
 kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-cni.yaml
 kubectl apply -f .\k3d-cluster\argocd\apps\app-istiod.yaml
 kubectl apply -f .\k3d-cluster\argocd\apps\app-istio-ztunnel.yaml
-# Waypoint Gateway for ambient Mesh networks
+# Install Gateway API CRDs required for waypoint gateways
 kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml
 ```
 
@@ -236,6 +236,34 @@ Verify apps and workloads:
 kubectl get application -n argocd istio-base istio-cni istiod istio-ztunnel
 kubectl get pods -n istio-system
 kubectl get pods -n kube-system -l k8s-app=istio-cni-node
+```
+
+#### Waypoint gateway (ambient L7)
+
+This repo includes a waypoint `Gateway` manifest in the api-demo chart:
+
+- `k3d-cluster/manifests/api-demo/templates/waypoint-proxy.yaml`
+
+The chart creates `waypoint-<namespace>` with `gatewayClassName: istio-waypoint` and configures it for service-level ambient traffic.
+
+To verify waypoint resources after sync:
+
+```powershell
+kubectl get gatewayclasses.gateway.networking.k8s.io
+kubectl get gateways.gateway.networking.k8s.io -n dev
+kubectl get pods -n dev -l gateway.networking.k8s.io/gateway-name=waypoint-dev
+```
+
+To attach a service to the waypoint:
+
+```powershell
+kubectl label service <service-name> -n dev istio.io/use-waypoint=<service-name>-svc-waypoint --overwrite
+```
+
+Or attach the full namespace to a waypoint:
+
+```powershell
+kubectl label namespace dev istio.io/use-waypoint=waypoint-dev --overwrite
 ```
 
 The `dev` namespace is labeled by `app-argocd-dev.yaml` with `istio.io/dataplane-mode=ambient`, so pods in that namespace join ambient mode without sidecar injection.

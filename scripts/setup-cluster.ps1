@@ -15,7 +15,7 @@
 param(
     [string]$CredentialsFile = ".\1password-credentials.json",
     [string]$Token,
-    [switch]$installIstio = $false,
+    [switch]$installIstio = $true,
     [switch]$installGrafana = $false
 )
 
@@ -295,6 +295,8 @@ if ($installIstio) {
         Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\$($app.File)")
         Wait-ArgoApp -Name $app.Name
     }
+    # Adding the istio gateway endpoints via the experimental Gateway API support since the standard IstioOperator installation doesn't include them and they're required for the demo.
+    Invoke-Native kubectl @('apply', '--server-side', '-f', 'https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml')
 }
 else {
     Write-Host "Istio installation skipped. If you want to install Istio, set `\$installIstio = $true` at the top of this script." -ForegroundColor Yellow
