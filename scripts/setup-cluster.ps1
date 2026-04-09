@@ -15,7 +15,7 @@
 param(
     [string]$CredentialsFile = ".\1password-credentials.json",
     [string]$Token,
-    [switch]$installIstio = $false,
+    [switch]$installIstio = $true,
     [switch]$installGrafana = $false
 )
 
@@ -290,6 +290,9 @@ if ($installIstio) {
         @{ File = 'app-istiod.yaml';        Name = 'istiod'        }
         @{ File = 'app-istio-ztunnel.yaml'; Name = 'istio-ztunnel' }
     )
+
+    & ".\scripts\setup-cert-manager.ps1"
+
     foreach ($app in $istioApps) {
         Step "Applying $($app.Name)"
         Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\$($app.File)")
