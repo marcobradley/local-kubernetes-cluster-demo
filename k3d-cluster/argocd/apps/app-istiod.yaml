@@ -29,7 +29,7 @@ spec:
         profile: ambient
         global:
           caAddress: cert-manager-istio-csr.cert-manager.svc:443
-          pilotCertProvider: kubernetes
+          pilotCertProvider: istio
         pilot:
           env:
             ENABLE_CA_SERVER: "false"
