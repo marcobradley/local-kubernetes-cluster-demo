@@ -28,8 +28,12 @@ function Invoke-Native {
 function Ensure-Namespace {
 	param([Parameter(Mandatory = $true)][string]$Name)
 
-	& kubectl get namespace $Name *> $null
-	if ($LASTEXITCODE -eq 0) {
+	$existing = & kubectl get namespace $Name --ignore-not-found -o name 2>$null
+	if ($LASTEXITCODE -ne 0) {
+		throw "Failed to check namespace '$Name'."
+	}
+
+	if (-not [string]::IsNullOrWhiteSpace($existing)) {
 		Write-Host "Namespace '$Name' already exists. Skipping." -ForegroundColor Yellow
 		return
 	}
