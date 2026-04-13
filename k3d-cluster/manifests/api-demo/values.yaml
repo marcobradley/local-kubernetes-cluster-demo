@@ -22,7 +22,7 @@ csharp_api:
   service:
     name: csharp-api-svc
     type: ClusterIP
-    port: 80
+    port: 443
     targetPort: 5113
 csharp_ui:
   name: csharp-ui
@@ -34,7 +34,7 @@ csharp_ui:
   service:
     name: csharp-ui-svc
     type: ClusterIP
-    port: 80
+    port: 443
     targetPort: 5113
 python_flask_ui:
   name: python-flask-ui
