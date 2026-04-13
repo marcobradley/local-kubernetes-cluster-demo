@@ -289,6 +289,7 @@ if ($installIstio) {
         @{ File = 'app-istio-cni.yaml';     Name = 'istio-cni'     }
         @{ File = 'app-istiod.yaml';        Name = 'istiod'        }
         @{ File = 'app-istio-ztunnel.yaml'; Name = 'istio-ztunnel' }
+        @{ File = 'app-istio-config-dev.yaml'; Name = 'istio-config-dev' }
     )
     foreach ($app in $istioApps) {
         Step "Applying $($app.Name)"
