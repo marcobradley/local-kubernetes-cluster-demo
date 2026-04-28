@@ -9,11 +9,11 @@ This repository contains manifests and configuration for a simple Kubernetes dem
 - [Using Helm with the cluster](#using-helm-with-the-cluster-)
 - [Setup & resources](#setup--resources-)
 - [Platform add-ons (Argo CD, Prometheus, Grafana, etc.)](#platform-add-ons-argo-cd-prometheus-grafana-etc)
-- [Notes](#notes-)
 - [Run GitHub Actions checks locally](#run-github-actions-checks-locally)
 - [Pre-commit hooks](#pre-commit-hooks)
 - [API image references](#api-image-references)
 - [GitHub Actions pipelines](#github-actions-pipelines-)
+- [Notes](#notes-)
 
 ## Global setup 🌐
 
