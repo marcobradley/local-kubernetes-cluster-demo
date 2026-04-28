@@ -2,6 +2,19 @@
 
 This repository contains manifests and configuration for a simple Kubernetes demos using `k3d`, `Prometheus`, and `helm`,  on Windows.
 
+## Index
+
+- [Global setup](#global-setup-)
+- [Manifests & charts in this repository](#manifests--charts-in-this-repository-)
+- [Using Helm with the cluster](#using-helm-with-the-cluster-)
+- [Setup & resources](#setup--resources-)
+- [Platform add-ons (Argo CD, Prometheus, Grafana, etc.)](#platform-add-ons-argo-cd-prometheus-grafana-etc)
+- [Run GitHub Actions checks locally](#run-github-actions-checks-locally)
+- [Pre-commit hooks](#pre-commit-hooks)
+- [API image references](#api-image-references)
+- [GitHub Actions pipelines](#github-actions-pipelines-)
+- [Notes](#notes-)
+
 ## Global setup 🌐
 
 ### Prerequisites ✅
@@ -399,14 +412,6 @@ Notes:
 > [!WARNING]
 > Do not commit real 1Password credentials or token files to git.
 
-## Notes 📝
-
-* You do not need a remote Kubernetes provider; everything runs locally using a Docker-compatible engine (Docker Desktop, Rancher Desktop with `dockerd`, etc.).
-* If you have existing Kubernetes contexts, k3d will add their own context name (for example `k3d-<name>`).
-* Helm communicates over the kubeconfig from `kubectl` and therefore automatically targets the active context.
-
-Feel free to adapt the configuration and manifests for your own experiments.
-
 ## Run GitHub Actions checks locally
 
 Prerequisites for local checks:
@@ -486,7 +491,9 @@ The API container images used by this cluster come from the following repositori
 Use these repositories as the source of truth for endpoint details and contract behavior.
 
 - `csharp-api`: https://github.com/marcobradley/csharp-api-demo
+- `csharp-ui`: https://github.com/marcobradley/csharp-ui-demo
 - `golang-api`: https://github.com/marcobradley/golang-api-demo
+- `python-flask-ui`: https://github.com/marcobradley/python-flask-demo
 - `ollama-api`: https://github.com/marcobradley/ollama-llm
 
 ## GitHub Actions pipelines 🔁
@@ -527,3 +534,10 @@ BREAKING CHANGE: route /songs now requires auth
 
 You can extend the workflow with tests/build steps as needed or adjust branch filters.
 
+## Notes 📝
+
+* You do not need a remote Kubernetes provider; everything runs locally using a Docker-compatible engine (Docker Desktop, Rancher Desktop with `dockerd`, etc.).
+* If you have existing Kubernetes contexts, k3d will add their own context name (for example `k3d-<name>`).
+* Helm communicates over the kubeconfig from `kubectl` and therefore automatically targets the active context.
+
+Feel free to adapt the configuration and manifests for your own experiments.
