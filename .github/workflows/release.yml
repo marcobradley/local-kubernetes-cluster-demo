@@ -81,7 +81,7 @@ jobs:
           -i CHANGELOG.md -s -r 0
 
       - name: Create pull request for changelog
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GIT_ACTIONS_TOKEN }}
           commit-message: 'chore(changelog): update CHANGELOG.md'
