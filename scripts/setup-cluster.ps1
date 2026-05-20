@@ -106,6 +106,20 @@ function Test-ArgoApplicationExists {
     return -not [string]::IsNullOrWhiteSpace($existing)
 }
 
+function Test-ArgoCdRunning {
+    $deploymentJson = & kubectl get deployment argocd-server -n argocd --ignore-not-found -o json 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to check Argo CD server deployment."
+    }
+
+    if ([string]::IsNullOrWhiteSpace($deploymentJson)) {
+        return $false
+    }
+
+    $deployment = $deploymentJson | ConvertFrom-Json
+    return [int]$deployment.status.availableReplicas -ge 1
+}
+
 function Step {
     param([string]$Label)
     Write-Host "`n==> $Label" -ForegroundColor Cyan
@@ -205,12 +219,17 @@ Invoke-Native kubectl @('apply', '-f', '.\k3d-cluster\cluster\ns-argocd.yaml')
 # 3. Install Argo CD
 # ---------------------------------------------------------------------------
 Step "Installing Argo CD"
-Invoke-Native kubectl @(
-    'apply', '-n', 'argocd', '--server-side', '--force-conflicts',
-    '-f', 'https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml'
-)
-Write-Host "  Waiting for argocd-server rollout..." -ForegroundColor Yellow
-Invoke-Native kubectl @('rollout', 'status', 'deployment/argocd-server', '-n', 'argocd', '--timeout=180s')
+if (Test-ArgoCdRunning) {
+    Write-Host "  Argo CD is already running. Skipping installation." -ForegroundColor Yellow
+}
+else {
+    Invoke-Native kubectl @(
+        'apply', '-n', 'argocd', '--server-side', '--force-conflicts',
+        '-f', 'https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml'
+    )
+    Write-Host "  Waiting for argocd-server rollout..." -ForegroundColor Yellow
+    Invoke-Native kubectl @('rollout', 'status', 'deployment/argocd-server', '-n', 'argocd', '--timeout=180s')
+}
 
 # ---------------------------------------------------------------------------
 # 4. Cluster RBAC
@@ -290,6 +309,9 @@ if ($installIstio) {
         @{ File = 'app-istiod.yaml';        Name = 'istiod'        }
         @{ File = 'app-istio-ztunnel.yaml'; Name = 'istio-ztunnel' }
     )
+
+    & ".\scripts\setup-cert-manager.ps1"
+
     foreach ($app in $istioApps) {
         Step "Applying $($app.Name)"
         Invoke-Native kubectl @('apply', '-f', ".\k3d-cluster\argocd\apps\$($app.File)")
